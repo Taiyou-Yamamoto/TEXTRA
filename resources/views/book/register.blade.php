@@ -22,17 +22,23 @@
             <div class="card card-primary h-90">
                 <form action="{{ route('book.add') }}" method="POST">
                     @csrf
-                    <div class="card-body flex h-80">
-                        <div class="w-80 pt-3">
-                            <img src="{{ asset('img/D4123631-D9E9-44CE-B6BC-CD30034EABCC_1_201_a.jpeg') }}" alt="本のイメージ"
-                                class="h-4/5 w-3/6 rounded-md mx-auto">
-                            <input type="file" name="img_path" class="mt-6" />
+                    <div class="card-body flex h-90">
+                        <div class="w-80 pt-3 mt-6">
+                            <img id="displayImage" src="{{ asset('img/bookimage.jpg') }}" alt=""
+                                class="h-4/6 w-3/5 mx-auto mb-4">
+                            <div class="flex flex-col items-start space-y-4">
+                                <label for="fileUpload"
+                                    class="text-sm font-semibold text-gray-400">表紙を変更する場合は画像を選んでください</label>
+                                <input type="file" id="fileUpload" accept="image/*,image/svg+xml"
+                                    class="block w-full text-sm text-gray-500 file:border file:border-gray-300 my-0 file:py-2 file:px-4 file:rounded-md file:text-sm file:font-medium file:bg-gray-100 hover:file:bg-gray-200">
+                            </div>
+
                         </div>
 
                         <div class="flex-grow-1 mx-4 my-10">
-                            <div class="form-group">
-                                <label for="name">タイトル</label>
-                                <input type="text" class="form-control" id="name" name="name"
+                            <div class="form-group my-5">
+                                <label for="title">タイトル</label>
+                                <input type="text" class="form-control " id="title" name="title"
                                     placeholder="本のタイトル">
                             </div>
 
@@ -59,4 +65,5 @@
 @stop
 
 @section('js')
+    let image = document.getElementById("fileItem").files[0];
 @stop
