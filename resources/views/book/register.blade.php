@@ -20,12 +20,15 @@
             @endif
 
             <div class="card card-primary h-90">
-                <form action="{{ route('book.add') }}" method="POST">
+                <form action="{{ route('book.add') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body flex h-90">
-                        <div class="w-80 pt-3 mt-6">
-                            <img id="displayImage" src="{{ asset('img/bookimage.jpg') }}" alt=""
-                                class="h-4/6 w-3/5 mx-auto mb-4">
+                        <div class="w-80 pt-3 mt-6 rounded">
+                            {{-- イメージ --}}
+                            <img id="displayImage" name="img_path" src="{{ asset('img/bookimage.jpg') }}" alt=""
+                                class="h-4/6 w-3/5 mx-auto mb-4 rounded-md">
+
+                            {{-- アップロード --}}
                             <div class="flex flex-col items-start space-y-4">
                                 <label for="fileUpload"
                                     class="text-sm font-semibold text-gray-400">表紙を変更する場合は画像を選んでください</label>
@@ -65,5 +68,22 @@
 @stop
 
 @section('js')
-    let image = document.getElementById("fileItem").files[0];
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileUpload = document.getElementById('fileUpload');
+            const displayImage = document.getElementById('displayImage');
+
+            fileUpload.addEventListener('change', () => {
+                const file = fileUpload.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        displayImage.src = e.target.result; // 画像のURLを設定
+                    };
+                    reader.readAsDataURL(file); // ファイルをデータURLとして読み込む
+                }
+            });
+        })
+    </script>
+
 @stop
