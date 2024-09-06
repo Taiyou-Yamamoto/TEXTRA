@@ -25,11 +25,10 @@
         <!-- 本のカード -->
         @foreach ($books as $book)
             <a href="{{ route('note.register', $book->id) }}" method="GET"
-                class="hover:text-blue-600 transition-all duration-200">
-                <div
-                    class="rounded-md bg-white shadow-md overflow-hidden h-80 w-full hover:shadow-xl transition-shadow duration-200">
-                    <img src="{{ asset($book->img_path ?? 'img/bookimage.jpg') }}" alt="img"
-                        class="w-full object-contain">
+                class="h-5/6 w-full rounded-xl hover:border-4 hover:border-blue-500 hover:text-blue-600 shadow-md hover:shadow-2xl active:shadow-none transition-all duration-200">
+                <div class="rounded-lg h-full w-full">
+                    <img src="{{ asset($book->image_path ?? 'img/bookimage.jpg') }}" alt="img"
+                        class="h-full w-full object-cover rounded-lg">
                 </div>
                 <p class="text-2xl font-semibold mt-1 text-center overflow-hidden text-ellipsis whitespace-nowrap">
                     {{ $book->title }}
