@@ -9,7 +9,7 @@
         <div>
             <a href="{{ route('book.register') }}" method="GET">
                 <div
-                    class="flex flex-col items-center justify-center rounded-md border-4 border-dashed h-80 w-full
+                    class="flex flex-col items-center justify-center rounded-md border-4 border-dashed h-5/6 w-full
                 border-blue-600 hover:border-indigo-600 transition-all duration-200 hover:bg-blue-300 xl:w-/6">
                     <i class="fas fa-plus text-4xl text-blue-600 hover:text-indigo-600 transition-all duration-200"></i>
 
