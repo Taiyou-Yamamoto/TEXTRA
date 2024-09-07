@@ -27,7 +27,7 @@ class NoteController extends Controller
     public function register($id)
     {
         $book = Book::findOrFail($id);
-        $notes = Note::where('book_id', $id)->get(); // メモ一覧を取得
+        $notes = Note::where('book_id', $id)->orderby('created_at', 'desc')->get(); // メモ一覧を取得
 
         return view('note.register', compact('book', 'notes'));
     }
