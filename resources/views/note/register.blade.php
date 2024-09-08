@@ -8,11 +8,11 @@
 
 @section('content')
 
-    <div class="container mx-auto p-4 w-full h-full">
-        <div class="bg-white shadow-md rounded p-6 w-full h-full">
+    <div class="container mx-auto p-4 w-full h-full bg-gradient-to-r from-teal-300 to-blue-300 rounded-md">
+        <div class="bg-white shadow-md rounded pt-2  pl-4  pr-3 w-full h-full ">
             <form action="{{ route('note.add', $book->id) }}" method="POST" class="">
                 <div class="flex justify-between">
-                    <div class="text-center text-3xl my-6 font-extrabold">{{ $book->title }}</div>
+                    <div class="text-title text-center text-3xl my-6 font-extrabold">{{ $book->title }}</div>
 
                     {{-- ページ番号 --}}
                     <div class=" mb-4 flex flex-col">
@@ -28,7 +28,7 @@
 
                 @csrf
                 <!-- メモ入力フィールド -->
-                <div class="w-full">
+                <div class="w-full ">
                     <textarea name="note" id="note" rows="6"
                         class=" w-full shadow-md border rounded py-2 px-3 text-2xl text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         {{-- placeholder="本に関するメモを入力してください">{{ old('note', $book->note) }}</textarea> --}} placeholder="本に関するメモを入力してください"></textarea>
@@ -45,10 +45,40 @@
                         メモを保存
                     </button>
                 </div>
+
+
             </form>
+
         </div>
     </div>
-
+    <!-- 本のノート　-->
+    <div class="w-full">
+        <table class='w-full border-gray-300 table-fixed h-full'>
+            <thead>
+                <tr class="border-b border-gray-300">
+                    <th class="w-6/12 text-center py-2 px-4">メモ</th>
+                    <th class="w-4/12 py-2 px-4">ページ</th>
+                    <th class="w-1/12 py-2 px-4"></th>
+                    <th class="w-1/12 py-2 px-4"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($notes as $note)
+                    <tr class="bg-white border-b border-gray-200 h-1/6">
+                        <td class="py-2 px-4 text-lg">{{ $note->content }}</td>
+                        <td class="py-2 px-4 text-lg">{{ $note->page_number }}</td>
+                        <td class="py-2 px-4 bg-green-400  text-white"><a class=" text-lg font-semibold">編集</a></td>
+                        <td class="py-2 px-4 bg-red-500 text-white"><button class="font-semibold text-lg">削除</button></td>
+                    </tr>
+                @empty
+                    <tr class="bg-white">
+                        <td colspan="2" class="text-center py-2 px-4 border border-gray-200">メモがありません。</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+        {{ $notes->onEachSide(2)->links() }}
+    </div>
 @stop
 
 
