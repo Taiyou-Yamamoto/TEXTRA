@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <div class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 h-96 w-full">
+    <div class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 h-[28rem] w-full">
         <!-- 本を追加するボタン -->
         <div class="flex items-center justify-center">
             <a href="{{ route('book.register') }}" class="flex flex-col items-center justify-center h-full w-full">
