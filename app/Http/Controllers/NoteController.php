@@ -27,7 +27,7 @@ class NoteController extends Controller
     public function register($id)
     {
         $book = Book::findOrFail($id);
-        $notes = Note::where('book_id', $id)->orderby('created_at', 'desc')->paginate(5); 
+        $notes = Note::where('book_id', $id)->orderby('created_at', 'desc')->paginate(5);
 
 
         return view('note.register', compact('book', 'notes'));
@@ -48,6 +48,7 @@ class NoteController extends Controller
         // データベースに保存
         Note::create([
             'book_id' => $book->id,
+            'user_id' => Auth::user()->id,
             'type' => $book->type,
             'content' => $validated['note'],
             'page_number' => $validated['page_number'] ?? null,
@@ -60,8 +61,29 @@ class NoteController extends Controller
             ->with('message', '登録しました！');
     }
 
-    public function allNote(Request $request){
-        // $notes =
-        return view('note.allNote');
+    public function allNote(Request $request)
+    {
+        $id = Auth::user()->id;
+        $notes = Note::where('user_id', $id)->orderby('created_at', 'desc')->paginate(10);
+
+        return view('note.allNote', compact('notes'));
+    }
+
+    public function destroy($id)
+    {
+        $note = Note::find($id);
+        $book_id = $note->book_id;
+
+        $note->delete();
+
+        return redirect()->route('note.register', ['id' => $book_id]);
+    }
+
+    public function allNoteDestroy($id)
+    {
+        $note = Note::find($id);
+        $note->delete();
+
+        return redirect()->route('note.allNote')->with('message', 'メモが削除されました。');
     }
 }
