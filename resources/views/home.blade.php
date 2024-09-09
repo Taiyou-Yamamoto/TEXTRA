@@ -22,7 +22,7 @@
         <div class="flex items-center justify-center">
             <a href="{{ route('book.register') }}" class="flex flex-col items-center justify-center h-full w-full ">
                 <div
-                    class="flex flex-col items-center justify-center h-full w-full rounded-md border-4 border-dashed hover:bg-blue-300 border-blue-600 hover:border-indigo-600 animation hover:bg-blue-30">
+                    class="flex flex-col items-center justify-center h-full w-full rounded-md border-4 border-dashed hover:bg-blue-300 border-blue-600 hover:border-indigo-600 quickAnimation hover:bg-blue-30">
                     <i class="fas fa-plus text-4xl text-blue-600 hover:text-indigo-600 animation"></i>
                 </div>
                 <p class="w-full font-semibold text-2xl mt-1 text-center hover:text-blue-700 animation">
@@ -37,7 +37,7 @@
                 <a href="{{ route('note.register', $book->id) }}" method="GET"
                     class="flex flex-col items-center justify-center h-full w-full">
                     <div
-                        class="rounded-xl h-full w-full hover:border-4 hover:border-blue-500 hover:text-blue-600 shadow-md hover:shadow-2xl active:shadow-none animation">
+                        class="rounded-xl h-full w-full hover:border-4 hover:border-blue-500 hover:text-blue-600 shadow-md hover:shadow-2xl active:shadow-none quickAnimation">
                         <img src="{{ asset($book->image_path ?? 'img/bookimage.jpg') }}" alt="img"
                             class="h-full w-full object-cover rounded-lg">
                     </div>

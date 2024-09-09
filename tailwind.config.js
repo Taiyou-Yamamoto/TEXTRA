@@ -9,25 +9,27 @@ export default {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'image': "url('./public/img/ELL75_yousyohondana20120620_TP_V.webp')", 
+      spacing: {
+        '98': '26rem',
+        '100-custom': '28rem',
       },
-      textShadow: {
-        DEFAULT: '2px 2px 4px rgba(0, 0, 0, 0.3)',
-        // 追加のカスタム値も設定できます
-        sm: '1px 1px 2px rgba(0, 0, 0, 0.3)',
-        lg: '3px 3px 6px rgba(0, 0, 0, 0.3)',
+      dropShadow: {
+        '3xl': '-2px 87px 100px 100px #777777;',
+        '4xl': [
+            '0 35px 35px rgba(0, 0, 0, 0.25)',
+            '0 45px 65px rgba(0, 0, 0, 0.15)'
+        ]
+      },
+      screens: {
+        'mmd': '890px',
+        '3xl': '1550px',
+        'min-height-400': { 'raw': '(min-height: 400px)' },
+        'min-height-1000': { 'raw': '(min-height: 1000px)' },
+      },
+      aspectRatio: {
+        'long': '4 / 6', // 縦長のアスペクト比
       },
     },
   },
-  plugins: [
-    function({ addUtilities, theme, e }) {
-      const textShadow = theme('textShadow');
-      const textShadowUtilities = Object.keys(textShadow).reduce((acc, key) => {
-        acc[`.${e(`text-shadow-${key}`)}`] = { textShadow: textShadow[key] };
-        return acc;
-      }, {});
-      addUtilities(textShadowUtilities, ['responsive', 'hover']);
-    },
-  ],
+  plugins: []
 }

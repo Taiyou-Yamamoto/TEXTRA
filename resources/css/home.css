@@ -30,17 +30,36 @@ body:not(.layout-fixed) .main-sidebar {
     text-shadow: 2px 2px 4px rgb(180, 179, 179);
 }
 
+.gradient-underline {
+    position: relative;
+}
+
+.gradient-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* テキスト下にスペースを追加 */
+    width: 100%;
+    height: 2px; /* 線の太さ */
+    background: linear-gradient(to right, #4fd1c5, #63b3ed); /* グラデーション */
+}
+
 .table-striped tbody tr:nth-child(odd) {
-    @apply bg-gray-100; /* 奇数行の背景色 */
+    @apply  bg-gray-50 !important; /* 奇数行 */
 }
 
 .table-striped tbody tr:nth-child(even) {
-    @apply bg-white; /* 偶数行の背景色 */
+    @apply bg-white; /* 偶数行 */
 }
 
 .animation {
     transition: all;
     transition-duration: 300ms;
+}
+
+.quickAnimation {
+    transition: all;
+    transition-duration: 170ms;
 }
 
 

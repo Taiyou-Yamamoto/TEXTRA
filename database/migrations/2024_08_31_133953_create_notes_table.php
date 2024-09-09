@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('book_id');
-            $table->tinyInteger('type');
-            $table->string('content');
-            $table->integer('page_number');
+            $table->foreignId('book_id')->constrained('books')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('type');
+            $table->string('content', 1500);
+            $table->integer('page_number')->nullable();
             $table->timestamps();
         });
     }

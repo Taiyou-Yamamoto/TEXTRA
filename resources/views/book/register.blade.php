@@ -32,7 +32,7 @@
                             <div class="flex flex-col items-start space-y-4">
                                 <label for="fileUpload"
                                     class="text-sm font-semibold text-gray-400">表紙を変更する場合は画像を選んでください</label>
-                                <input type="file" id="fileUpload" accept="image/*,image/svg+xml"
+                                <input type="file" id="fileUpload" name="image_path" accept="image/*,image/svg+xml"
                                     class="block w-full text-sm text-gray-500 file:border file:border-gray-300 my-0 file:py-2 file:px-4 file:rounded-md file:text-sm file:font-medium file:bg-gray-100 hover:file:bg-gray-200">
                             </div>
 

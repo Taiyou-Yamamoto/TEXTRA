@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Book Bank',
+    'title' => 'Textora',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -149,10 +149,10 @@ return [
     */
 
     'layout_topnav' => null,
-    'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
-    'layout_fixed_footer' => null,
+    'layout_boxed' => false,
+    'layout_fixed_sidebar' => false,
+    'layout_fixed_navbar' => false,
+    'layout_fixed_footer' => false,
     'layout_dark_mode' => null,
 
     /*
@@ -294,17 +294,23 @@ return [
             'text' => 'ライブラリ',
             'url'  => '/',
             'icon' => 'fas fa-book',
+
         ],
         [
-            'text' => 'メモ',
-            'url'  => 'note',
+            'text' => 'メモ一覧',
+            'url'  => 'allNote',
             'icon' => 'fas fa-pencil-alt',
         ],
+        [
+            'text' => 'カレンダー',
+            'url'  => 'note',
+            'icon' => 'fas fa-calendar-alt',
+        ],
+
 
         // AdminLTEデフォルト
         /*
-        // Navbar items:
-        [
+        Navbar items => [        [
             'type'         => 'navbar-search',
             'text'         => 'search',
             'topnav_right' => true,
@@ -312,8 +318,8 @@ return [
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
-        ],
-        */
+        ],]
+        
 
         // AdminLTEデフォルト
         /*
