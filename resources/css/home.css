@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .text-shadow {
+    @apply text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+} */
+
+/* html{
+    font-family: 'Nerko One', 'Noto Sans JP', sans-serif;
+} */
+
+body:not(.layout-fixed) .main-sidebar {
+    position: fixed;
+}
+
+.content-wrapper {
+    background-color: white;
+}
+
+.text-title{
+    text-shadow: 1px 1px 4px rgba(193,228,233,3);
+}
+
+.add_shadow{
+    text-shadow: 1px 1px 1px black;
+}
+
+.gray_shadow{
+    text-shadow: 2px 2px 4px rgb(180, 179, 179);
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    @apply bg-gray-100; /* 奇数行の背景色 */
+}
+
+.table-striped tbody tr:nth-child(even) {
+    @apply bg-white; /* 偶数行の背景色 */
+}
+
+.animation {
+    transition: all;
+    transition-duration: 300ms;
+}
+
+
