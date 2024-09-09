@@ -59,4 +59,9 @@ class NoteController extends Controller
         return redirect()->route('note.register', ['id' => $id])
             ->with('message', '登録しました！');
     }
+
+    public function allNote(Request $request){
+        // $notes =
+        return view('note.allNote');
+    }
 }
