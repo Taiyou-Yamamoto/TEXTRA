@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-custom {
+    background-image: url('https://images.pexels.com/photos/1098601/pexels-photo-1098601.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-color: rgba(255, 255, 255, 0.2); /* 半透明の白色 */
+    background-blend-mode: overlay; /* 画像と色を重ね合わせる */
+    background-size: cover;
+    background-position: center;
+}

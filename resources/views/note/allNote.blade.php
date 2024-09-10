@@ -17,6 +17,7 @@
                     <th class="w-2/12 py-2 px-4 text-2xl">ページ</th>
                     <th class="w-1/12 py-2 px-4"></th>
                     <th class="w-1/12 py-2 px-4"></th>
+                    <th class="w-1/12 py-2 px-4"></th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +29,13 @@
                         <td class="text-white cursor-pointer"><a href="{{ route('note.edit') }}"
                                 class="hover:text-white text-lg font-semibold shadow-md hover:shadow-none py-1 px-4 bg-green-500 hover:bg-green-600 rounded-md animation">編集</a>
                         </td>
+                        <td class="text-white cursor-pointer"><button type="button" class="btn "
+                                data-toggle="modal" data-target="#exampleModal">
+                                モーダルを開く
+                            </button>
+
+                        </td>
+
                         <td class="text-white">
                             <form action="{{ route('allNote.destroy', $note->id) }}" method="POST">
                                 @csrf
@@ -46,6 +54,28 @@
         </table>
         <div class="mx-auto 2xl:mt-10 ">
             {{ $notes->onEachSide(2)->links('vendor.pagination.tailwind2') }}
+        </div>
+
+        <!-- モーダルの本体 -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">モーダルタイトル</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        モーダルの内容がここに入ります。
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                        <button type="button" class="btn btn-primary">保存</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

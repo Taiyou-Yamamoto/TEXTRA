@@ -292,12 +292,12 @@ return [
     'menu' => [
         [
             'text' => 'ライブラリ',
-            'url'  => '/',
+            'url'  => '/home',
             'icon' => 'fas fa-book',
 
         ],
         [
-            'text' => 'メモ一覧',
+            'text' => 'メモ編集',
             'url'  => 'allNote',
             'icon' => 'fas fa-pencil-alt',
         ],

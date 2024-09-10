@@ -7,7 +7,9 @@
 @stop
 
 @section('content')
-
+    <x-guest-layout>
+        こんにちは
+    </x-guest-layout>
 
 @stop
 
