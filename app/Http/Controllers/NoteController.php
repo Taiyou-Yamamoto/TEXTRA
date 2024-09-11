@@ -64,7 +64,7 @@ class NoteController extends Controller
     public function allNote(Request $request)
     {
         $id = Auth::user()->id;
-        $notes = Note::where('user_id', $id)->orderby('created_at', 'desc')->paginate(10);
+        $notes = Note::with('book')->where('user_id', $id)->orderby('created_at', 'desc')->paginate(10);
 
         return view('note.allNote', compact('notes'));
     }
