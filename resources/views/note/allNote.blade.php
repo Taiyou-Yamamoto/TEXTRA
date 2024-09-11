@@ -22,34 +22,31 @@
             </thead>
             <tbody>
                 @forelse ($notes as $note)
+                    {{-- タイトル --}}
                     <tr class="text-lg bg-white border-b border-gray-200 md:h-16 xl:h-24 2xl:h-[5rem] 3xl:h-20">
                         <td class="hidden">
                             {{ $note->book->title }}</td>
+
+                        {{-- メモ内容 --}}
                         <td class="py-2 px-4 2xl:text-ms text-ellipsis overflow-hidden whitespace-nowrap">
                             {{ $note->content }}</td>
+
+                        {{-- ページ番号 --}}
                         <td class="py-2 px-4 2xl:text-2xl text-center">{{ $note->page_number }}</td>
-                        {{-- <td class="text-white cursor-pointer"><a href="{{ route('note.edit') }}"
-                                class="hover:text-white text-lg font-semibold shadow-md hover:shadow-none py-1 px-4 bg-green-500 hover:bg-green-600 rounded-md animation">編集</a>
-                        </td> --}}
+
+                        {{-- 種類 --}}
                         <td class="py-2 px-4 2xl:text-xl text-center">{{ $note->book->type }}</td>
+
+                        {{-- 編集ボタン --}}
                         <td class="text-white cursor-pointer"><button id="{{ $loop->index }}" type="button"
                                 class="btn text-white text-lg font-semibold shadow-md hover:shadow-none py-1 px-4 bg-green-500 hover:bg-green-600 rounded-md animation"
-                                data-toggle="modal" data-target="#exampleModal" data_page_number="{{ $note->page_number }}"
-                                data_content="{{ $note->content }}" date-title={{ $note->book->title }}
-                                onclick="openEditModal(this)">
+                                data-toggle="modal" data-target="#exampleModal" data_title="{{ $note->book->title }}"
+                                data_type="{{ $note->book->type }}" data_page_number="{{ $note->page_number }}"
+                                data_content="{{ $note->content }}" onclick="openEditModal(this)">
                                 編集
                             </button>
 
                         </td>
-
-                        {{-- <td class="text-white">
-                            <form action="{{ route('allNote.destroy', $note->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    class="py-1 px-4 shadow-md hover:shadow-none bg-rose-400 hover:bg-rose-600 font-semibold text-lg cursor-pointer rounded-md animation">削除</button>
-                            </form>
-                        </td> --}}
                     </tr>
                 @empty
                     <tr class="bg-white">
@@ -83,17 +80,24 @@
                         @csrf
                         @method('PUT')
                         <div class="modal-body h-96 mb-3">
-                            <div class="grid grid-cols-2 gap-4">
-                                {{-- 本のタイトル --}}
-                                <div id='modal_title' class="text-title text-center text-3xl my-6 font-extrabold">本のタイトル
+                            <div class="grid grid-custom gap-4">
+                                {{-- モーダルタイトル --}}
+                                <div class="mb-4 flex flex-col">
+                                    <label for="modal_title" class=" block text-center text-lg font-medium">本のタイトル</label>
+                                    <input type="text" name="title" id="modal_title" value="{{ old('title') }}"
+                                        class="w-full h-15 p-2 text-xl mx-auto shadow-md border rounded text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    @error('title')
+                                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 {{-- フォームのコンテナ --}}
-                                <div class="flex gap-4">
+                                <div class="grid child-grid-custom  gap-4">
+
                                     {{-- 種類 --}}
                                     <div class="mb-4 flex flex-col">
                                         <label for="modal_type" class="block text-center text-lg font-medium">種類</label>
-                                        <input type="string" name="type" id="modal_type" value="{{ old('type') }}"
+                                        <input type="text" name="type" id="modal_type" value="{{ old('type') }}"
                                             class="w-full h-15 p-2 text-xl mx-auto shadow-md border rounded text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                         @error('type')
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -102,8 +106,9 @@
 
                                     {{-- ページ番号 --}}
                                     <div class="mb-4 flex flex-col">
-                                        <label for="pageNumber" class="block text-center text-lg font-medium">ページ番号</label>
-                                        <input type="number" name="pageNumber" id="pageNumber"
+                                        <label for="modal_page_number"
+                                            class="block text-center text-lg font-medium">ページ番号</label>
+                                        <input type="number" name="page_number" id="modal_page_number"
                                             value="{{ old('page_number') }}"
                                             class="w-full h-15 p-2 text-xl mx-auto shadow-md border rounded text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                         @error('page_number')
@@ -111,13 +116,14 @@
                                         @enderror
                                     </div>
                                 </div>
+
                             </div>
 
-                            <textarea name="note_contetnt" id="note_contetnt" cols="30" rows="10" class="w-full shadow border-teal-300"></textarea>
+                            <textarea name="content" id="modal_content" cols="30" rows="8" class="w-full shadow border-teal-300 text-xl"></textarea>
                         </div>
                         <div class="modal-footer flex flex-row">
 
-                            <button type="button" class="btn btn-primary font-bold w-1/6 mr-[20rem]">保存</button>
+                            <button type="submit" class="btn btn-primary font-bold w-1/6 mr-[20rem]">保存</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
                         </div>
                     </form>
@@ -134,10 +140,17 @@
     @section('js')
         <script>
             let openEditModal = function(button) {
-                let data_page_number = button.getAttribute('page_number');
+                let data_title = button.getAttribute('data_title');
                 let data_content = button.getAttribute('data_content');
-                document.getElementById('pageNumber').value = data_page_number;
-                document.getElementById('note_contetnt').value = data_content;
+                let data_type = button.getAttribute('data_type');
+                let data_page_number = button.getAttribute('data_page_number');
+
+
+
+                document.getElementById('modal_title').value = data_title;
+                document.getElementById('modal_type').value = data_type;
+                document.getElementById('modal_page_number').value = data_page_number;
+                document.getElementById('modal_content').value = data_content;
 
             }
         </script>
