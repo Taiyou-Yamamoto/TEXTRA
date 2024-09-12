@@ -47,10 +47,13 @@ Route::post('/note/add/{id}', [App\Http\Controllers\NoteController::class, 'add'
 Route::put('/note/edit/{id}', [App\Http\Controllers\NoteController::class, 'noteEdit'])->name('note.edit');
 Route::delete('/note/destroy/{id}', [App\Http\Controllers\NoteController::class, 'destroy'])->name('note.destroy');
 
+// 編集画面
 Route::get('/allNote', [App\Http\Controllers\NoteController::class, 'allNote'])->name('note.allNote');
 Route::put('/allNote/edit/{id}', [App\Http\Controllers\NoteController::class, 'allNoteEdit'])->name('allNote.edit');
 Route::delete('/allNote/destroy/{id}', [App\Http\Controllers\NoteController::class, 'allNoteDestroy'])->name('allNote.destroy');
 
+// スライド画面
+Route::get('/slider', [App\Http\Controllers\NoteController::class, 'slider'])->name('slider');
 
 
 
