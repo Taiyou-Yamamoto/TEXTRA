@@ -81,6 +81,7 @@ class NoteController extends Controller
         // Noteの内容を更新
         $note->page_number = $validated['page_number'];
         $note->content = $validated['content'];
+        $note->type = $validated['type'];
         $note->save(); // Noteを保存
 
         // Bookの内容も更新

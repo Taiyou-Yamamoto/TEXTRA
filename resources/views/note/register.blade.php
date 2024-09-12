@@ -96,7 +96,7 @@
                         </td>
                         {{-- 削除ボタン --}}
                         <td class="text-white">
-                            <form action="{{ route('allNote.destroy', $note->id) }}" method="POST">
+                            <form action="{{ route('note.destroy', $note->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"

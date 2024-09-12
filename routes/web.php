@@ -41,17 +41,17 @@ Route::get('/book/register', [App\Http\Controllers\BookController::class, 'index
 Route::post('/book/add', [App\Http\Controllers\BookController::class, 'add'])->name('book.add');
 
 
-Route::get('/note', [App\Http\Controllers\NoteController::class, 'index'])->name('note.index');
+// Route::get('/note', [App\Http\Controllers\NoteController::class, 'index'])->name('note.index');
 Route::get('/note/register/{id}', [App\Http\Controllers\NoteController::class, 'register'])->name('note.register');
-Route::get('/note/edit', [App\Http\Controllers\NoteController::class, 'note.edit'])->name('note.edit');
 Route::post('/note/add/{id}', [App\Http\Controllers\NoteController::class, 'add'])->name('note.add');
+Route::put('/note/edit/{id}', [App\Http\Controllers\NoteController::class, 'noteEdit'])->name('note.edit');
 Route::delete('/note/destroy/{id}', [App\Http\Controllers\NoteController::class, 'destroy'])->name('note.destroy');
 
-
 Route::get('/allNote', [App\Http\Controllers\NoteController::class, 'allNote'])->name('note.allNote');
+Route::put('/allNote/edit/{id}', [App\Http\Controllers\NoteController::class, 'allNoteEdit'])->name('allNote.edit');
 Route::delete('/allNote/destroy/{id}', [App\Http\Controllers\NoteController::class, 'allNoteDestroy'])->name('allNote.destroy');
 
-Route::get('/modal', [ModalController::class, 'modal']);
+
 
 
 Route::prefix('items')->group(function () {

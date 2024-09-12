@@ -30,6 +30,10 @@ body:not(.layout-fixed) .main-sidebar {
     text-shadow: 2px 2px 4px rgb(180, 179, 179);
 }
 
+.img_shadow{
+    box-shadow: 5px 6px 40px rgb(180, 179, 179);
+}
+
 .gradient-underline {
     position: relative;
 }
@@ -63,3 +67,11 @@ body:not(.layout-fixed) .main-sidebar {
 }
 
 
+.grid-custom {
+
+    grid-template-columns: 3fr 1.8fr;
+}
+.child-grid-custom {
+
+    grid-template-columns: 2fr 0.8fr;
+}

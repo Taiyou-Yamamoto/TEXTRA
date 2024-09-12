@@ -17,9 +17,9 @@
     </div>
 
     <div
-        class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-6 w-full h-[7rem] 2xl:h-[50rem] xl:h-[50rem] lg:h-80 mmd:h-[40rem] sm:h-[15rem]">
+        class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-6 w-full h-[7rem] 2xl:h-[43rem] xl:h-[38rem] lg:h-80 mmd:h-[40rem] sm:h-[15rem]">
         <!-- 本を追加するボタン -->
-        <div class="flex items-center justify-center">
+        <div class="flex items-center justify-center aspect-3/5">
             <a href="{{ route('book.register') }}" class="flex flex-col items-center justify-center h-full w-full ">
                 <div
                     class="flex flex-col items-center justify-center h-full w-full rounded-md border-4 border-dashed hover:bg-blue-300 border-blue-600 hover:border-indigo-600 quickAnimation hover:bg-blue-30">
@@ -33,11 +33,11 @@
 
         <!-- 本のカード -->
         @foreach ($books as $book)
-            <div class="flex items-center justify-center aspect-lon">
+            <div class="flex items-center justify-center aspect-lon aspect-3/5">
                 <a href="{{ route('note.register', $book->id) }}" method="GET"
                     class="flex flex-col items-center justify-center h-full w-full">
                     <div
-                        class="rounded-xl h-full w-full hover:border-4 hover:border-blue-500 hover:text-blue-600 shadow-md hover:shadow-2xl active:shadow-none quickAnimation">
+                        class="rounded-xl h-full w-full hover:border-4 hover:border-blue-500 hover:text-blue-600 img_shadow hover:shadow-2xl active:shadow-none quickAnimation">
                         <img src="{{ asset($book->image_path ?? 'img/bookimage.jpg') }}" alt="img"
                             class="h-full w-full object-cover rounded-lg">
                     </div>

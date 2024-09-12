@@ -45,8 +45,7 @@
                                 data-toggle="modal" data-target="#exampleModal" data_id="{{ $note->id }}"
                                 data_title="{{ $note->book->title }}" data_type="{{ $note->book->type }}"
                                 data_page_number="{{ $note->page_number }}" data_content="{{ $note->content }}"
-                                onclick="openEditModal(this)"><i
-                                        class="fas fa-trash gray_shadow"></i>
+                                onclick="openEditModal(this)"><i class="fas fa-pencil-alt gray_shadow"></i>
                                 編集
                             </button>
 
@@ -58,7 +57,7 @@
                                 @method('DELETE')
                                 <button type="submit"
                                     class="py-1 px-4 shadow-md hover:shadow-none gray_shadow bg-rose-400 hover:bg-rose-600 font-semibold text-lg cursor-pointer rounded-md animation"><i
-                                        class="fas fa-trash gray_shadow"></i>   削除</button>
+                                        class="fas fa-trash gray_shadow"></i> 削除</button>
                             </form>
                         </td>
                     </tr>

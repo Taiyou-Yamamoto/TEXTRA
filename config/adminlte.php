@@ -297,7 +297,7 @@ return [
 
         ],
         [
-            'text' => 'メモ編集',
+            'text' => '編集',
             'url'  => 'allNote',
             'icon' => 'fas fa-pencil-alt',
         ],
