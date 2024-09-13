@@ -8,10 +8,17 @@
     margin: 0;
     position: relative;
     overflow: hidden !important; /* コンテナ内のコンテンツがはみ出さないようにする */
+    background-image: url('https://user0514.cdnw.net/shared/img/thumb/ELL75_yousyohondana20120620_TP_V.jpg');
+    background-color: rgba(212, 173, 109, 0.285); /* 半透明の白色 */
+    background-blend-mode: overlay; /* 画像と色を重ね合わせる */
+    background-size: cover;
+    background-position: center;
 }
 
 .swiper-slide {
     display: flex;
+    flex-grow: 1;
+    flex-grow: 4;
     align-items: center !important;
     justify-content: center !important;
     height: 50% !important;
@@ -21,9 +28,7 @@
 .slide-content {
     padding: 16px; 
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 90%; /* スライドの幅を調整 */
-    height: auto; /* 高さをコンテンツに合わせる */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     max-height: 80vh; /* 高さが画面に収まるように制限 */
     overflow-y: auto !important; 
 }
@@ -32,13 +37,20 @@
 textarea {
     resize: none;
 }
-
-.swiper-scrollbar {
-    height: 5rem; /* スクロールバーの高さ */
-    background-color: rgba(0, 0, 0, 0.1); /* スクロールバーの背景色 */
-}
 .swiper-scrollbar .swiper-scrollbar-drag {
-    background-color: #007bff; /* スクロールバーのドラッグ部分の色 */
-    border-radius: 10px; /* スクロールバーの角を丸くする */
+    background-color: #007bff;
+
 }
 
+.gray_shadow{
+    text-shadow: 2px 2px 4px rgb(180, 179, 179);
+}
+
+.content {
+    display: flex !important;
+    justify-content: center !important; /* 水平方向の中央揃え */
+    align-items: center !important; /* 垂直方向の中央揃え */
+    height: 100%; /* 高さを100%に設定して、中央揃えが正しく機能するようにする */
+    text-align: center !important; /* テキストを中央揃え */
+
+}
