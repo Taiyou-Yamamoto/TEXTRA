@@ -23,10 +23,16 @@
     justify-content: center !important;
     height: 50% !important;
     overflow: hidden; 
+    background-size: cover;
+    background-image: url('https://free-paper-texture.com/p/p0097/p0097_m.jpg');
+    background-color: rgba(32, 18, 5, 0.8); /* 半透明の白色 */
+    background-blend-mode: overlay;
+    background-position: top;
+    animation: parallax linear both;
 }
 
 .slide-content {
-    padding: 16px; 
+    padding: 2rem; 
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     max-height: 80vh; /* 高さが画面に収まるように制限 */

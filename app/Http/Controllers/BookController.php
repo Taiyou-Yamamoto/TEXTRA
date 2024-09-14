@@ -19,6 +19,8 @@ class BookController extends Controller
         return view('book.register');
     }
 
+
+    // 書籍登録
     public function add(Request $request)
     {
         $validated = $request->validate([

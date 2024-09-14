@@ -23,6 +23,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    //  ホーム画面表示
     public function index()
     {
         $comments = [

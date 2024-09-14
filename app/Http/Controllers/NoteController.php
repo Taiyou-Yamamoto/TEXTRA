@@ -17,15 +17,6 @@ class NoteController extends Controller
     }
 
 
-    // public function index()
-    // {
-    //     // 商品一覧取得
-    //     $notes = Note::all();
-
-    //     return view('note.index', compact('notes'));
-    // }
-
-
     // 本登録画面を取得
     public function register($id)
     {
@@ -100,7 +91,9 @@ class NoteController extends Controller
         $id = Auth::user()->id;
         $notes = Note::with('book')->where('user_id', $id)->orderby('created_at', 'desc')->paginate(10);
 
-        return view('note.allNote', compact('notes'));
+        $$types = $notes->pluck('type')->unique();
+
+        return view('note.allNote', compact('notes', 'types'));
     }
 
     // 一覧ページでの編集
@@ -150,4 +143,14 @@ class NoteController extends Controller
 
         return redirect()->route('note.allNote')->with('message', 'メモが削除されました。');
     }
+
+    // スライド表示
+    public function slider()
+    {
+        $id = Auth::user()->id;
+        $notes = Note::with('book')->where('user_id', $id)->orderby('created_at', 'desc')->paginate(10);
+        return view('slider/slider', compact('notes'));
+    }
+
+    // 検索機能
 }

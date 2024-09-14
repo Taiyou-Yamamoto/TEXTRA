@@ -7,10 +7,29 @@
 @stop
 
 @section('content')
-    <!-- 本のノート -->
-    <h1 class="text-center p-9 text-6xl font-extrabold gray_shadow gradient-underline gradient-underline::after">MEMO一覧</h1>
+    <!-- メモ一覧 -->
+    <h1 class="text-center p-9 text-6xl font-extrabold gray_shadow ">MEMO一覧</h1>
     <div class="w-full">
-        <table class='w-full border-gray-300 table-fixed h-full table-striped  shadow'>
+
+        {{-- 検索フォーム --}}
+        <div class="text-center mb-8">
+            <form class="flex justify-center items-center h-12" id="searchform1" method="get" action="">
+                <input class="h-full w-3/12 px-4 py-2 border border-gray-300 rounded-l-md" type="text" name="keywords" id="keywords"
+                    placeholder="キーワードで検索" />
+                <select id="myselect" class="h-full px-4 py-2 border border-gray-300 text-gray-500">
+                    <option value="all">全種</option>
+                    @forelse ($types as $type)
+                        <option value="{{ $type->index }}">{{ $type }}</option>
+                    @empty
+                    @endforelse
+                </select>
+                <button class="h-full px-4 py-2 bg-amber-100 rounded-r-md border gray_shadow active:bg-amber-300 animation" type="submit" value=""><i
+                        class="fas fa-search text-lg"></i></button>
+            </form>
+        </div>
+
+        {{-- テーブル --}}
+        <table class='w-full border-gray-300 table-fixed h-full table-striped  shadow gradient-underline::before'>
             <thead>
                 <tr class="border-b border-gray-300">
                     <th class="hidden">id</th>
@@ -68,7 +87,9 @@
                 @endforelse
             </tbody>
         </table>
-        <div class="mx-auto 2xl:mt-10 ">
+
+        {{-- ページネーション --}}
+        <div class="mx-auto 2xl:mt-[2rem] ">
             {{ $notes->onEachSide(2)->links('vendor.pagination.tailwind2') }}
         </div>
 
