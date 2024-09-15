@@ -24,11 +24,11 @@
     height: 50% !important;
     overflow: hidden; 
     background-size: cover;
-    background-image: url('https://free-paper-texture.com/p/p0097/p0097_m.jpg');
-    background-color: rgba(32, 18, 5, 0.8); /* 半透明の白色 */
+    background-image: url('https://free-paper-texture.com/p/p0097/p0097_m.jpg') !important;
+    background-color: rgba(231, 230, 220, 0.928); /* 半透明の白色 */
     background-blend-mode: overlay;
     background-position: top;
-    animation: parallax linear both;
+    background-attachment: fixed;
 }
 
 .slide-content {
