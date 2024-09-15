@@ -13,18 +13,21 @@
 
         {{-- 検索フォーム --}}
         <div class="text-center mb-8">
-            <form class="flex justify-center items-center h-12" id="searchform1" method="get" action="">
-                <input class="h-full w-3/12 px-4 py-2 border border-gray-300 rounded-l-md" type="text" name="keywords" id="keywords"
-                    placeholder="キーワードで検索" />
-                <select id="myselect" class="h-full px-4 py-2 border border-gray-300 text-gray-500">
-                    <option value="all">全種</option>
+            <form class="flex justify-center items-center h-12" id="searchform1" method="get"
+                action="{{ route('allNote.search') }}">
+                <input class="h-full w-3/12 px-4 py-2 border border-gray-300 rounded-l-md active:border-none" type="text"
+                    name="keywords" id="keywords" placeholder="キーワードで検索" value="{{ request()->query('keywords') }}" />
+                <select id="search" name='type'
+                    class="h-full px-4 py-2 border border-gray-300 text-gray-500 active:border-none">
+                    <option value="all" @if (request()->query('type') == 'all') selected @endif>全種別</option>
                     @forelse ($types as $type)
-                        <option value="{{ $type->index }}">{{ $type }}</option>
+                        <option value="{{ $type }}" @if (request()->query('type') == $type) selected @endif>
+                            {{ $type }}</option>
                     @empty
                     @endforelse
                 </select>
-                <button class="h-full px-4 py-2 bg-amber-100 rounded-r-md border gray_shadow active:bg-amber-300 animation" type="submit" value=""><i
-                        class="fas fa-search text-lg"></i></button>
+                <button class="h-full px-4 py-2 bg-amber-100 rounded-r-md border gray_shadow active:bg-amber-300 animation"
+                    type="submit" value=""><i class="fas fa-search text-lg"></i></button>
             </form>
         </div>
 
@@ -81,8 +84,8 @@
                         </td>
                     </tr>
                 @empty
-                    <tr class="bg-white">
-                        <td colspan="2" class="text-center py-2 px-4 border border-gray-200">メモがありません。</td>
+                    <tr class="bg-white w-full">
+                        <td colspan="4" class="w-full text-center py-2 px-4 border border-gray-200">メモがありません。</td>
                     </tr>
                 @endforelse
             </tbody>
