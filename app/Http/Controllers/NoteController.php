@@ -7,6 +7,7 @@ use App\Models\Note;
 use App\Models\Book;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 class NoteController extends Controller
 {
@@ -91,7 +92,8 @@ class NoteController extends Controller
         $id = Auth::user()->id;
         $notes = Note::with('book')->where('user_id', $id)->orderby('created_at', 'desc')->paginate(10);
 
-        $$types = $notes->pluck('type')->unique();
+        // 各種種別を一つだけ取得
+        $types = $notes->pluck('type')->unique();
 
         return view('note.allNote', compact('notes', 'types'));
     }
@@ -153,4 +155,30 @@ class NoteController extends Controller
     }
 
     // 検索機能
+    public function search(Request $request)
+    {
+        $query = Note::query()->with('book');
+
+        $keywords = $request->query('keywords');
+        $type = $request->query('type');
+
+        // dd($query);
+        if ($request->has('keywords')) {
+            $query->where(function ($query) use ($keywords) {
+                $query->where('content', 'like', "%{$keywords}%")
+                    ->orWhereHas('book', function ($query) use ($keywords) {
+                        $query->where('title', 'like', "%{$keywords}%");
+                    });
+            });
+        }
+
+        if ($request->has('type') && $type != 'all') {
+            $query->where('type', $type);
+        }
+        $notes = $query->paginate(10);
+
+        $types = Note::where('user_id', Auth::user()->id)->pluck('type')->unique();
+
+        return view('note.allNote', compact('notes', 'types'));
+    }
 }
