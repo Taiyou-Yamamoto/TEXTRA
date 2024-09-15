@@ -33,9 +33,10 @@
 
         <!-- 本のカード -->
         @foreach ($books as $book)
-            <div class="flex items-center justify-center aspect-lon aspect-3/5">
+            <div class="relative flex items-center justify-center aspect-lon aspect-3/5">
                 <a href="{{ route('note.register', $book->id) }}" method="GET"
-                    class="flex flex-col items-center justify-center h-full w-full">
+                    id="{{ $book->id }}"class="flex flex-col items-center justify-center h-full w-full"
+                    oncontextmenu="openDialog()">
                     <div
                         class="rounded-xl h-full w-full hover:border-4 hover:border-blue-500 hover:text-blue-600 img_shadow hover:shadow-2xl active:shadow-none quickAnimation">
                         <img src="{{ asset($book->image_path ?? 'img/bookimage.jpg') }}" alt="img"
@@ -46,6 +47,14 @@
                         {{ $book->title }}
                     </p>
                 </a>
+                <form action="{{ route('book.destroy', $book->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit"
+                        class="absolute top-2 right-2 z-10 opacity-0 delete-btn hover:cursor-grab hover:text-gray-500">
+                        <i class="fas fa-trash gray_shadow text-[1.6rem]"></i>
+                    </button>
+                </form>
             </div>
         @endforeach
     </div>

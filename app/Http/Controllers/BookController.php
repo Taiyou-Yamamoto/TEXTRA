@@ -48,4 +48,17 @@ class BookController extends Controller
 
         return redirect('/');
     }
+
+    // 書籍とそのメモを削除
+    /**
+     *@param book_id
+     *
+     */
+    public function destroy($id)
+    {
+        $book = Book::find($id);
+        $book->delete();
+
+        return redirect()->route('home');
+    }
 }
