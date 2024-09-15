@@ -39,7 +39,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/book/register', [App\Http\Controllers\BookController::class, 'index'])->name('book.register');
 Route::post('/book/add', [App\Http\Controllers\BookController::class, 'add'])->name('book.add');
-
+Route::delete('/book/destroy/{id}', [App\Http\Controllers\BookController::class, 'destroy'])->name('book.destroy');
 
 // Route::get('/note', [App\Http\Controllers\NoteController::class, 'index'])->name('note.index');
 Route::get('/note/register/{id}', [App\Http\Controllers\NoteController::class, 'register'])->name('note.register');
@@ -50,6 +50,7 @@ Route::delete('/note/destroy/{id}', [App\Http\Controllers\NoteController::class,
 // 編集画面
 Route::get('/allNote', [App\Http\Controllers\NoteController::class, 'allNote'])->name('note.allNote');
 Route::put('/allNote/edit/{id}', [App\Http\Controllers\NoteController::class, 'allNoteEdit'])->name('allNote.edit');
+Route::get('/allNote/search', [App\Http\Controllers\NoteController::class, 'Search'])->name('allNote.search');
 Route::delete('/allNote/destroy/{id}', [App\Http\Controllers\NoteController::class, 'allNoteDestroy'])->name('allNote.destroy');
 
 // スライド画面

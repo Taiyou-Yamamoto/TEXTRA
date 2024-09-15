@@ -25,9 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         scrollbar: {
             el: '.swiper-scrollbar',
-            // draggable: true,
+            draggable: true,
         },
-        freeMode: true,
+        freeMode: true,  
+
         keyboard: {
             enabled: true,
         },

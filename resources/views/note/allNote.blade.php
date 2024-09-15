@@ -10,7 +10,10 @@
     <!-- メモ一覧 -->
     <h1 class="text-center p-9 text-6xl font-extrabold gray_shadow ">MEMO一覧</h1>
     <div class="w-full">
+        
+        <div id="contextmenu">
 
+        </div>
         {{-- 検索フォーム --}}
         <div class="text-center mb-8">
             <form class="flex justify-center items-center h-12" id="searchform1" method="get"

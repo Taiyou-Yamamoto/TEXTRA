@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Book Bank</b>',
+    'logo' => '<b>Textora</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -297,14 +297,14 @@ return [
 
         ],
         [
-            'text' => '編集',
-            'url'  => 'allNote',
+            'text' => 'メモ編集',
+            'url'  => '/allNote',
             'icon' => 'fas fa-pencil-alt',
         ],
         [
-            'text' => 'カレンダー',
-            'url'  => 'note',
-            'icon' => 'fas fa-calendar-alt',
+            'text' => 'スライド',
+            'url'  => '/slider',
+            'icon' => 'fas fa-scroll',
         ],
 
 

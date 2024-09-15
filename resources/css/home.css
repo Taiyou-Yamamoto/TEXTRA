@@ -10,12 +10,17 @@
     font-family: 'Nerko One', 'Noto Sans JP', sans-serif;
 } */
 
-body:not(.layout-fixed) .main-sidebar {
+
+/* body:not(.layout-fixed) .main-sidebar {
     position: fixed;
-}
+} */
 
 .content-wrapper {
     background-color: white;
+}
+/* ホバー時,削除ボタン表示 */
+.relative:hover .delete-btn {
+    opacity: 1;
 }
 
 .text-title{
@@ -26,6 +31,9 @@ body:not(.layout-fixed) .main-sidebar {
     text-shadow: 1px 1px 1px black;
 }
 
+.white_shadow{
+    text-shadow: 2px 2px 4px rgb(255, 255, 255),-2px -2px 4px rgb(255, 255, 255);
+}
 .gray_shadow{
     text-shadow: 2px 2px 4px rgb(180, 179, 179);
 }

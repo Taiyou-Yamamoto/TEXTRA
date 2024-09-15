@@ -3,31 +3,27 @@
 @section('title', 'メモを書く')
 
 @section('content_header')
-
 @stop
 
 @section('content')
-    <div class="swiper w-full  mx-auto mt-12 parallax-bg"
-        data-swiper-parallax="-23%">
-
-
-        <!-- Additional required wrapper -->
+    <div class="swiper w-full mx-auto mt-12">
         <div class="swiper-wrapper flex items-center">
             @forelse ($notes as $note)
                 <!-- Slides -->
-                <div data-swiper-parallax="-3" data-swiper-parallax-duration="60"
-                    class="bg-white font-semibold swiper-slide slide-content w-full leading-normal rounded-md border gray_shadow shadow-md">
-                    <div>
+                <div class="swiper-slide slide-content w-full leading-normal rounded-md border gray_shadow shadow-md">
+                    <div class="flex-col">
                         <div class="mb-4 text-center text-5xl">
                             {{ $note->book->title }}
                         </div>
-                        <div class="text-center content text-xl leading-normal">
+                        <div class="content text-xl leading-normal">
                             {{ $note->content }}
                         </div>
                     </div>
                 </div>
             @empty
-                <div class="swiper-slide flex items-center justify-center">めもがありません</div>
+                <div class="swiper-slide items-center justify-center">
+                    めもがありません
+                </div>
             @endforelse
         </div>
 
