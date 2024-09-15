@@ -107,7 +107,7 @@
                     </tr>
                 @empty
                     <tr class="bg-white">
-                        <td colspan="2" class="text-center py-2 px-4 border border-gray-200">メモがありません。</td>
+                        <td colspan="4" class="text-center py-2 px-4 border border-gray-200">メモがありません。</td>
                     </tr>
                 @endforelse
             </tbody>
