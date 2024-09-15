@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Book;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -30,11 +31,12 @@ class BookController extends Controller
         ]);
 
         if ($request->hasFile('image_path')) {
-            $imageName = time() . '.' . $request->image_path->extension();
-            $request->image_path->move(public_path('img'), $imageName);
-            $validated['image_path'] = 'img/' . $imageName; // 保存するパスを設定
+            $file = $request->file('image_path');
+            $imageName = $file->hashName();
+            $file->storeAs('public/img', $imageName);
+            $validated['image_path'] = 'storage/img/' . $imageName;
         } else {
-            $validated['image_path'] = 'img/bookimage.jpg';
+            $validated['image_path'] = 'storage/img/bookimage.jpg';
         }
 
         Book::create([
@@ -57,7 +59,15 @@ class BookController extends Controller
     public function destroy($id)
     {
         $book = Book::find($id);
-        $book->delete();
+
+        if ($book) {
+            if ($book->image_path !== 'storage/img/bookimage.jpg') {
+                $imagePath = str_replace('storage/', '', $book->image_path);
+                Storage::disk('public')->delete($imagePath);
+            }
+
+            $book->delete();
+        }
 
         return redirect()->route('home');
     }
