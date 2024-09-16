@@ -31,7 +31,7 @@
                 <div class="w-full ">
                     <textarea name="note" id="note" rows="6"
                         class=" w-full shadow-md border rounded py-2 px-3 text-2xl text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        placeholder="本に関するメモを入力してください"></textarea>
+                        placeholder="本に関するメモを入力してください">{{ old('note') }}</textarea>
 
                     @error('note')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
