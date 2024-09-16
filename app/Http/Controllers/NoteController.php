@@ -98,36 +98,37 @@ class NoteController extends Controller
         return view('note.allNote', compact('notes', 'types'));
     }
 
-        // 検索機能
-        public function search(Request $request)
-        {
-            // まずallNoteと同じように,ユーザ-のデータを取得
-            $id = Auth::user()->id;
-            // $notes = Note::with('book')->where('user_id', $id);
-            $query = Note::query()->with('book')->where('user_id',$id);
-            $types = $query->pluck('type')->unique();
-            
-            // 検索された場合
-            $keywords = $request->query('keywords');
-            $selected_type = $request->query('type');
-    
-            if ($request->has('keywords')) {
-                $query->where(function ($query) use ($keywords) {
-                    $query->where('content', 'like', "%{$keywords}%")
-                        ->orWhereHas('book', function ($query) use ($keywords) {
-                            $query->where('title', 'like', "%{$keywords}%");
-                        });
-                });
-            }
-    
-            if ($request->has('type') && $selected_type != 'all') {
-                $query->where('type', $selected_type);
-            }
-            $notes = $query->orderby('created_at', 'desc')->paginate(10);
-    
-            // dd($searched_notes);
-            return view('note.allNote', compact('notes','types'));
+    // 検索機能
+    public function search(Request $request)
+    {
+        // まずallNoteと同じように,ユーザ-のデータを取得
+        $id = Auth::user()->id;
+
+        $query = Note::query()->with('book')->where('user_id', $id);
+        $types = $query->pluck('type')->unique();
+
+        // 検索された場合
+        $keywords = $request->query('keywords');
+        $selected_type = $request->query('type');
+
+        if ($request->has('keywords')) {
+            $query->where(function ($query) use ($keywords) {
+                $query->where('content', 'like', "%{$keywords}%")
+                    ->orWhereHas('book', function ($query) use ($keywords) {
+                        $query->where('title', 'like', "%{$keywords}%");
+                    });
+            });
         }
+
+        if ($request->has('type') && $selected_type != 'all') {
+            $query->where('type', $selected_type);
+        }
+        // 検索で条件付け＆ページネーション化
+        $notes = $query->orderby('created_at', 'desc')->paginate(10);
+
+
+        return view('note.allNote', compact('notes', 'types'));
+    }
 
     // 一覧ページでの編集
     public function allNoteEdit(Request $request, $id)
@@ -184,6 +185,4 @@ class NoteController extends Controller
         $notes = Note::with('book')->where('user_id', $id)->orderby('created_at', 'desc')->paginate(10);
         return view('slider/slider', compact('notes'));
     }
-
-
 }
