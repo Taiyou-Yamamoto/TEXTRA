@@ -19,7 +19,7 @@
     <div
         class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-6 w-full h-[7rem] 2xl:h-[43rem] xl:h-[38rem] lg:h-80 mmd:h-[40rem] sm:h-[15rem]">
         <!-- 本を追加するボタン -->
-        <div class="xl:h-[31.5rem] lg: flex items-center justify-center aspect-3/5">
+        <div class="flex items-center justify-center aspect-3/5">
             <a href="{{ route('book.register') }}" class="flex flex-col items-center justify-center h-full w-full ">
                 <div
                     class="flex flex-col items-center justify-center h-full w-full rounded-md border-4 border-dashed hover:bg-blue-300 border-blue-600 hover:border-indigo-600 quickAnimation hover:bg-blue-30">
