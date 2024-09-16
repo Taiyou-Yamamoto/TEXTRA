@@ -98,6 +98,37 @@ class NoteController extends Controller
         return view('note.allNote', compact('notes', 'types'));
     }
 
+        // 検索機能
+        public function search(Request $request)
+        {
+            // まずallNoteと同じように,ユーザ-のデータを取得
+            $id = Auth::user()->id;
+            // $notes = Note::with('book')->where('user_id', $id);
+            $query = Note::query()->with('book')->where('user_id',$id);
+            $types = $query->pluck('type')->unique();
+            
+            // 検索された場合
+            $keywords = $request->query('keywords');
+            $selected_type = $request->query('type');
+    
+            if ($request->has('keywords')) {
+                $query->where(function ($query) use ($keywords) {
+                    $query->where('content', 'like', "%{$keywords}%")
+                        ->orWhereHas('book', function ($query) use ($keywords) {
+                            $query->where('title', 'like', "%{$keywords}%");
+                        });
+                });
+            }
+    
+            if ($request->has('type') && $selected_type != 'all') {
+                $query->where('type', $selected_type);
+            }
+            $notes = $query->orderby('created_at', 'desc')->paginate(10);
+    
+            // dd($searched_notes);
+            return view('note.allNote', compact('notes','types'));
+        }
+
     // 一覧ページでの編集
     public function allNoteEdit(Request $request, $id)
     {
@@ -154,31 +185,5 @@ class NoteController extends Controller
         return view('slider/slider', compact('notes'));
     }
 
-    // 検索機能
-    public function search(Request $request)
-    {
-        $query = Note::query()->with('book');
 
-        $keywords = $request->query('keywords');
-        $type = $request->query('type');
-
-        // dd($query);
-        if ($request->has('keywords')) {
-            $query->where(function ($query) use ($keywords) {
-                $query->where('content', 'like', "%{$keywords}%")
-                    ->orWhereHas('book', function ($query) use ($keywords) {
-                        $query->where('title', 'like', "%{$keywords}%");
-                    });
-            });
-        }
-
-        if ($request->has('type') && $type != 'all') {
-            $query->where('type', $type);
-        }
-        $notes = $query->paginate(10);
-
-        $types = Note::where('user_id', Auth::user()->id)->pluck('type')->unique();
-
-        return view('note.allNote', compact('notes', 'types'));
-    }
 }

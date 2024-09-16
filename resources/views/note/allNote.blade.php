@@ -51,6 +51,7 @@
                     {{-- タイトル --}}
                     <tr class="text-lg bg-white border-b border-gray-200 md:h-16 xl:h-24 2xl:h-[5rem] 3xl:h-20">
                         <td class="hidden">
+
                             {{ $note->book->title }}</td>
 
                         {{-- メモ内容 --}}
