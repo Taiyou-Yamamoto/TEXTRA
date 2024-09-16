@@ -50,7 +50,7 @@ Route::delete('/note/destroy/{id}', [App\Http\Controllers\NoteController::class,
 // 編集画面
 Route::get('/allNote', [App\Http\Controllers\NoteController::class, 'allNote'])->name('note.allNote');
 Route::put('/allNote/edit/{id}', [App\Http\Controllers\NoteController::class, 'allNoteEdit'])->name('allNote.edit');
-Route::get('/allNote/search', [App\Http\Controllers\NoteController::class, 'Search'])->name('allNote.search');
+Route::get('/allNote/search', [App\Http\Controllers\NoteController::class, 'search'])->name('allNote.search');
 Route::delete('/allNote/destroy/{id}', [App\Http\Controllers\NoteController::class, 'allNoteDestroy'])->name('allNote.destroy');
 
 // スライド画面
