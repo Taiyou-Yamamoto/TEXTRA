@@ -4,6 +4,7 @@ import Alpine from 'alpinejs';
 import { Navigation, Pagination, Scrollbar, FreeMode, Keyboard, EffectCoverflow, Parallax } from 'swiper/modules';
 import 'swiper/css/bundle';
 import 'swiper/css';
+import Typed from 'typed.js';
 
 window.Alpine = Alpine;
 Alpine.start();
@@ -44,5 +45,17 @@ document.addEventListener('DOMContentLoaded', function () {
             modifier: 2,
             slideShadows: true,
         },
+    });
+
+    const typed = new Typed('#typed', {
+        strings: ['こんにちは','ここは言葉の保管庫','TEXTRA'],
+        typeSpeed: 80,
+        startDelay: 1000,
+        fadeOutDelay: 500,
+        fadeOutClass: 'typed-fade-out',
+        backSpeed: 70,
+        loop: false,
+        fadeOut: true,
+        fadeOutDelay: 1500
     });
 });
