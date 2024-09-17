@@ -8,6 +8,7 @@ use App\Models\Book;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Validator;
 
 class NoteController extends Controller
 {
@@ -34,11 +35,23 @@ class NoteController extends Controller
 
         $book = Book::findOrFail($id);
 
-
-        $validated = $request->validate([
+        $rules = [
             'note' => 'required|string|max:500',
             'page_number' => 'nullable|integer|min:1|max:1000'
-        ]);
+        ];
+        $messages = [
+            'note.required' => 'メモを入力してください。',
+            'note.max' => 'メモは500文字以下にしてください。',
+            'page_number.min' => 'ページ番号がマイナスになっています',
+            'page_number.max' => 'ページ番号は1000以下にしてください。',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        $validated = $validator->validated();
 
         // データベースに保存
         Note::create([
@@ -53,6 +66,7 @@ class NoteController extends Controller
         session()->flash('message', '登録しました！');
 
         return redirect()->route('note.register', ['id' => $id])
+            ->withInput()
             ->with('message', '登録しました！');
     }
 
@@ -60,18 +74,35 @@ class NoteController extends Controller
     // ライブラリでの編集
     public function noteEdit(Request $request, $id)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:500',
+        $rules = [
+            'title' => 'required|string|max:100',
             'type' => 'required|string|max:20',
-            'page_number' => 'nullable|integer|min:1|max:1000',
-            'content' => 'required|string|max:1500'
-        ]);
+            'image_path' => 'nullable|image',
+            'content' => 'required|string|max:500',
+        ];
+
+        $messages = [
+            'title.required' => 'タイトルを入力してください。',
+            'type.required' => '種別を入力してください。',
+            'type.max' => '種別は20文字以下にしてください。',
+            'content.required' => 'メモを入力してください.',
+            'content.max' => 'メモは500文字以下にしてください。'
+
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $validated = $validator->validated();
 
         $note = Note::with('book')->where('id', $id)->first();
 
         // dd($note);
         // Noteの内容を更新
-        $note->page_number = $validated['page_number'];
+        $note->page_number = $validated['page_number'] ?? $note->page_number;
         $note->content = $validated['content'];
         $note->type = $validated['type'];
         $note->save(); // Noteを保存
@@ -101,7 +132,7 @@ class NoteController extends Controller
     // 検索機能
     public function search(Request $request)
     {
-        // まずallNoteと同じように,ユーザ-のデータを取得
+
         $id = Auth::user()->id;
 
         $query = Note::query()->with('book')->where('user_id', $id);
@@ -133,12 +164,29 @@ class NoteController extends Controller
     // 一覧ページでの編集
     public function allNoteEdit(Request $request, $id)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:500',
+        $rules = [
+            'title' => 'required|string|max:100',
             'type' => 'required|string|max:20',
-            'page_number' => 'nullable|integer|min:1|max:1000',
-            'content' => 'required|string|max:1500'
-        ]);
+            'image_path' => 'nullable|image',
+            'content' => 'required|string|max:500',
+        ];
+
+        $messages = [
+            'title.required' => 'タイトルを入力してください。',
+            'type.required' => '種別を入力してください。',
+            'type.max' => '種別は20文字以下にしてください。',
+            'content.required' => 'メモを入力してください.',
+            'content.max' => 'メモは500文字以下にしてください。'
+
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $validated = $validator->validated();
 
         $note = Note::with('book')->where('id', $id)->first();
 

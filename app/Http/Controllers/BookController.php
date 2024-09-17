@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Book;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class BookController extends Controller
 {
@@ -24,11 +25,26 @@ class BookController extends Controller
     // 書籍登録
     public function add(Request $request)
     {
-        $validated = $request->validate([
+
+        $rules = [
             'title' => 'required|string|max:100',
             'type' => 'required|string|max:20',
             'image_path' => 'nullable|image'
-        ]);
+        ];
+
+        $messages = [
+            'title.required' => 'タイトルを入力してください。',
+            'type.required' => '種別を入力してください。',
+            'type.max' => '種別は20文字以下にしてください。',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $validated = $validator->validated();
 
         if ($request->hasFile('image_path')) {
             $file = $request->file('image_path');
@@ -39,6 +55,8 @@ class BookController extends Controller
             $validated['image_path'] = 'storage/img/bookimage.jpg';
         }
 
+
+
         Book::create([
             'user_id' => Auth::id(),
             'title' => $validated['title'],
@@ -46,7 +64,7 @@ class BookController extends Controller
             'image_path' => $validated['image_path'] ?? null
         ]);
 
-        session()->flash('massage', '登録しました！');
+        session()->flash('message', '登録しました！');
 
         return redirect('/');
     }

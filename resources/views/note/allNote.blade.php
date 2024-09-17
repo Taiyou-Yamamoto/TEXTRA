@@ -10,7 +10,7 @@
     <!-- メモ一覧 -->
     <h1 class="text-center p-9 text-6xl font-extrabold gray_shadow ">MEMO一覧</h1>
     <div class="w-full">
-        
+
         <div id="contextmenu">
 
         </div>
@@ -103,14 +103,14 @@
         {{-- モーダル  --}}
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered w-11/12 max-w-5xl" role="document">
+            <div class="modal-dialog modal-dialog-centered w-11/12 h-full max-w-5xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel"></h5>
                     </div>
 
                     {{-- 入力フォーム --}}
-                    <form id="editForm" action="" method="POST">
+                    <form id="editForm" action="" method="POST"> {{-- actionはjsで渡す --}}
                         @csrf
                         @method('PUT')
                         <div class="modal-body h-96 mb-3">
@@ -157,7 +157,10 @@
                             </div>
                             {{-- メモ内容 --}}
                             <textarea name="content" id="modal_content" cols="30" rows="6"
-                                class="w-full shadow border-teal-300 text-xl rounded-md leading-10"></textarea>
+                                class="w-full shadow border-teal-300 text-xl rounded-md leading-10 resize-none"></textarea>
+                            @if ($errors->has('content'))
+                                <li class="list-none text-red-600">{{ $errors->first('content') }}</li>
+                            @endif
                         </div>
                         <div class="modal-footer flex flex-row">
 

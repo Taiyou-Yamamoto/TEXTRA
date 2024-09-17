@@ -129,7 +129,7 @@
                 </div>
 
                 {{-- 入力フォーム --}}
-                <form id="editForm" action="" method="POST">
+                <form id="editForm" action="" method="POST">　{{-- actionはjsで渡す --}}
                     @csrf
                     @method('PUT')
                     <div class="modal-body h-96 mb-3">
@@ -178,6 +178,9 @@
                         {{-- メモ内容 --}}
                         <textarea name="content" id="modal_content" cols="30" rows="6"
                             class="w-full shadow border-teal-300 text-xl rounded-md leading-10"></textarea>
+                        @if ($errors->has('content'))
+                            <li class="list-none text-red-600">{{ $errors->first('content') }}</li>
+                        @endif
                     </div>
                     <div class="modal-footer flex flex-row">
 
