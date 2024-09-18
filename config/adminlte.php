@@ -64,11 +64,11 @@ return [
     */
 
     'logo' => '<b>Textora</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
-    'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'ライブラリ',
+    // 'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    // 'logo_img_class' => 'brand-image img-circle elevation-3',
+    // 'logo_img_xl' => null,
+    // 'logo_img_xl_class' => 'brand-image-xs',
+    // 'logo_img_alt' => 'ライブラリ',
 
     /*
     |--------------------------------------------------------------------------
@@ -305,6 +305,11 @@ return [
             'text' => 'スライド',
             'url'  => '/slider',
             'icon' => 'fas fa-scroll',
+        ],
+        [
+            'text' => 'ユーザー情報',
+            'url'  => '/profile',
+            'icon' => 'fas fa-user',
         ],
 
 
