@@ -25,7 +25,7 @@
                     class="flex flex-col items-center justify-center h-full w-full rounded-md border-4 border-dashed hover:bg-blue-300 border-blue-600 hover:border-indigo-600 quickAnimation hover:bg-blue-30">
                     <i class="fas fa-plus text-4xl text-blue-600 hover:text-indigo-600 animation"></i>
                 </div>
-                <p class="w-full font-semibold text-2xl mt-1 text-center hover:text-blue-700 animation">
+                <p class="w-full font-semibold xl:text-2xl lg:text-lg items-end  mt-1 text-center hover:text-blue-700 animation">
                     本を追加する
                 </p>
             </a>
@@ -43,7 +43,7 @@
                             class="h-full w-full object-cover rounded-lg">
                     </div>
                     <p
-                        class="w-full text-2xl font-semibold mt-1 text-center text-ellipsis overflow-hidden whitespace-nowrap">
+                        class="w-full xl:text-2xl font-semibold mt-1 text-center text-ellipsis overflow-hidden whitespace-nowrap lg:text-lg ">
                         {{ $book->title }}
                     </p>
                 </a>
