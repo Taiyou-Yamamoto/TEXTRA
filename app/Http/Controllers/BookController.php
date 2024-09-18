@@ -34,6 +34,7 @@ class BookController extends Controller
 
         $messages = [
             'title.required' => 'タイトルを入力してください。',
+            'title.max' => 'タイトルは１００文字以下にしてください。',
             'type.required' => '種別を入力してください。',
             'type.max' => '種別は20文字以下にしてください。',
         ];
