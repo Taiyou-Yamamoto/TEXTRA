@@ -9,3 +9,20 @@
     background-size: cover;
     background-position: center;
 }
+
+.gray_shadow{
+    text-shadow: 3px 3px 4px rgb(53, 53, 53);
+}
+
+.typed-fade-out {
+    animation: fadeOut 1.5s ease-in-out;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
