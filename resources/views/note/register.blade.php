@@ -60,7 +60,7 @@
                     <th class="hidden">タイトル</th>
                     <th class="w-8/12 text-center py-2 text-2xl">メモ</th>
                     <th class="w-1/12 text-center">ページ</th>
-                    <th class="w-1/12 text-center">種類</th>
+                    <th class="w-1/12 text-center">種別</th>
                     <th class="w-1/12 py-2 px-4"></th>
                 </tr>
             </thead>
@@ -153,7 +153,7 @@
                                 {{-- 種類 --}}
                                 <div class="mb-4 flex flex-col">
                                     <label for="modal_type"
-                                        class="gray_shadow block text-center text-lg font-medium">種類</label>
+                                        class="gray_shadow block text-center text-lg font-medium">種別</label>
                                     <input type="text" name="type" id="modal_type" value="{{ old('type') }}"
                                         class="w-full h-15 p-2 text-xl mx-auto shadow-md border rounded text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                     @error('type')
