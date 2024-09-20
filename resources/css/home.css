@@ -15,6 +15,10 @@
     position: fixed;
 } */
 
+.brand-link {
+    text-align: center;
+    font-weight: bold;
+}
 .content-wrapper {
     background-color: white;
 }
