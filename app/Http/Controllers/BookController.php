@@ -53,7 +53,7 @@ class BookController extends Controller
             $file->storeAs('public/img', $imageName);
             $validated['image_path'] = 'storage/img/' . $imageName;
         } else {
-            $validated['image_path'] = 'storage/img/bookimage.jpg';
+            $validated['image_path'] = 'img/bookimage.jpg';
         }
 
 
