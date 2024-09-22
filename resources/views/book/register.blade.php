@@ -70,7 +70,7 @@
 @section('js')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const fileUpload = document.getElementById('fileUpload');
+            const fileUpload = document.getElementById('file_input');
             const displayImage = document.getElementById('displayImage');
 
             fileUpload.addEventListener('change', () => {
