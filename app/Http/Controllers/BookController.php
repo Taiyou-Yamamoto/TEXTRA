@@ -57,7 +57,7 @@ class BookController extends Controller
         // } else {
         //     $validated['image_path'] = 'img/bookimage.jpg';
         // }
-        if($request['image_path'] == 'img/bookimage.jpg'){
+        if ($request['image_path'] == 'img/bookimage.jpg') {
             $validated['image_path'] = 'img/bookimage.jpg';
         }
 
