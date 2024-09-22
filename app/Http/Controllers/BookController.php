@@ -49,12 +49,15 @@ class BookController extends Controller
 
 
         dd($request);
-        if ($request->hasFile('image_path')) {
-            $file = $request->file('image_path');
-            $imageName = $file->hashName();
-            $file->storeAs('public/img', $imageName);
-            $validated['image_path'] = 'storage/img/' . $imageName;
-        } else {
+        // if ($request->hasFile('image_path')) {
+        //     $file = $request->file('image_path');
+        //     $imageName = $file->hashName();
+        //     $file->storeAs('public/img', $imageName);
+        //     $validated['image_path'] = 'storage/img/' . $imageName;
+        // } else {
+        //     $validated['image_path'] = 'img/bookimage.jpg';
+        // }
+        if($request['image_path'] == 'img/bookimage.jpg'){
             $validated['image_path'] = 'img/bookimage.jpg';
         }
 
