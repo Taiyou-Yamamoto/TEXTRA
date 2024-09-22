@@ -48,7 +48,7 @@ class BookController extends Controller
         $validated = $validator->validated();
 
 
-        // dd($request);
+        dd($request);
         // if ($request->hasFile('image_path')) {
         //     $file = $request->file('image_path');
         //     $imageName = $file->hashName();
