@@ -25,7 +25,7 @@
                                     for="file_input">表紙を変更する場合は画像を選んでください</label>
                                 <input
                                     class="block w-full text-sm file:p-2 file:font-semibold file:cursor-pointer text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                    id="file_input" type="fileUpload" name="image_path">
+                                    id="file_input" type="file" name="image_path">
                             </div>
 
                         </div>
