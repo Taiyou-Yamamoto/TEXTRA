@@ -16,7 +16,7 @@
                     <div class="card-body flex h-90">
                         <div class="w-80 pt-3 mt-6 rounded">
                             {{-- イメージ --}}
-                            <img id="displayImage" name="img_path" src="{{ asset('storage/app/public/img/bookimage.jpg') }}"
+                            <img id="displayImage" name="img_path" src="{{ asset('img/bookimage.jpg') }}"
                                 alt="" class="aspect-3/5 h-4/6 w-3/5 mx-auto mb-4 rounded-md">
 
                             {{-- アップロード --}}
