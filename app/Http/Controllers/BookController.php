@@ -59,6 +59,8 @@ class BookController extends Controller
         // }
         if (!$request->hasFile('image_path')) {
             $validated['image_path'] = 'img/bookimage.jpg';
+        } else if($request->hasFile('image_path')){
+             
         }
 
 

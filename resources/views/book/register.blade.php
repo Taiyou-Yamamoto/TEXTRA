@@ -16,7 +16,7 @@
                     <div class="card-body flex h-90">
                         <div class="w-80 pt-3 mt-6 rounded">
                             {{-- イメージ --}}
-                            <img id="displayImage" name="img_path" src="{{ asset('img/bookimage.jpg') }}" alt=""
+                            <img id="displayImage" name="img_path" src="{{ old('img_path') ? asset(img_path) : asset('img/bookimage.jpg') }}" alt=""
                                 class="aspect-3/5 h-4/6 w-3/5 mx-auto mb-4 rounded-md">
 
                             {{-- アップロード --}}
@@ -69,18 +69,23 @@
 
 @section('js')
     <script>
+        //file_inputが変わったら、displayImageが変わるようにしたい
         document.addEventListener('DOMContentLoaded', function() {
-            const fileUpload = document.getElementById('file_input');
+            const fileInput = document.getElementById('file_input');
             const displayImage = document.getElementById('displayImage');
 
-            fileUpload.addEventListener('change', () => {
-                const file = fileUpload.files[0];
+            fileInput.addEventListener('change', () => {
+                const file = fileInput.files[0];
                 if (file) {
                     const reader = new FileReader();
+
+                    // onloadを先に定義すると、onloadがreadAsDataURLを見逃す可能性がなくなる
+                    // データURLをsrcに挿入
                     reader.onload = function(e) {
-                        displayImage.src = e.target.result; // 画像のURLを設定
+                        displayImage.src = e.target.result; 
                     };
-                    reader.readAsDataURL(file); // ファイルをデータURLとして読み込む
+                    // ファイルをデータURLとして読み込む
+                    reader.readAsDataURL(file); 
                 }
             });
         })
