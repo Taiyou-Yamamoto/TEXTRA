@@ -65,7 +65,7 @@ class BookController extends Controller
             // 画像が被ってしまわないようにハッシュかをする
             $validated['image_path'] = $file->hashName();
 
-            dd($validated['image_path']);
+            // dd($validated['image_path']);
             Storage::disk('s3')->put('covers/' . $validated['image_path'], file_get_contents($file));
         }
 
