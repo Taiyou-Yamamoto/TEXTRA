@@ -61,13 +61,10 @@ class BookController extends Controller
             $validated['image_path'] = 'img/bookimage.jpg';
         } else if ($request->hasFile('image_path')) {
             $file = $request->file('image_path');
-
-            // ハッシュ化されたファイル名を取得
+            // 画像が重複しないようにハッシュ化
             $validated['image_path'] = $file->hashName();
-
-            // S3にファイルオブジェクトを直接アップロード
-            $result = Storage::disk('s3')->put('covers/' . $validated['image_path'], $file);
-            dd($result);
+            // S3にファイルをアップロード
+            Storage::disk('s3')->put('covers/' . $validated['image_path'], $file);
         }
 
 
