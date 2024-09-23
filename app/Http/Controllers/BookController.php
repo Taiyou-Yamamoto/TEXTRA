@@ -64,7 +64,7 @@ class BookController extends Controller
             $file = $request->file('image_path');
             $validated['image_path'] = $file->hashName();
 
-            dd(config('filesystems.disks.s3'));
+            // dd(config('filesystems.disks.s3'));
             Storage::disk('s3')->put('covers', $validated['image_path']);
         }
 
