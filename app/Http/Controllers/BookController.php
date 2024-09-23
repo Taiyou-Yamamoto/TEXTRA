@@ -60,7 +60,9 @@ class BookController extends Controller
         if (!$request->hasFile('image_path')) {
             $validated['image_path'] = 'img/bookimage.jpg';
         } else if($request->hasFile('image_path')){
-             
+            $file = $request->file('image_path');
+            $validated['image_path'] = $file->hashName();
+            Storage::disk('s3')->put('covers', $validated['image_path']);
         }
 
 
