@@ -59,12 +59,12 @@ class BookController extends Controller
         // }
         if (!$request->hasFile('image_path')) {
             $validated['image_path'] = 'img/bookimage.jpg';
-        } else if($request->hasFile('image_path')){
+        } else if ($request->hasFile('image_path')) {
             // dd(config('filesystems.disks.s3.region'));
             $file = $request->file('image_path');
             $validated['image_path'] = $file->hashName();
 
-            // dd(config('filesystems.disks.s3'));
+            dd($validated['image_path']);
             Storage::disk('s3')->put('covers/', $validated['image_path']);
         }
 
