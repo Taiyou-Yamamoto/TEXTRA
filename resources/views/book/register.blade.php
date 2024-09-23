@@ -16,8 +16,8 @@
                     <div class="card-body flex h-90">
                         <div class="w-80 pt-3 mt-6 rounded">
                             {{-- イメージ --}}
-                            <img id="displayImage" name="img_path" src="{{ asset('storage/img/bookimage.jpg') }}"
-                                alt="" class="aspect-3/5 h-4/6 w-3/5 mx-auto mb-4 rounded-md">
+                            <img id="displayImage" name="img_path" src="{{ old('img_path') ? asset(img_path) : asset('img/bookimage.jpg') }}" alt=""
+                                class="aspect-3/5 h-4/6 w-3/5 mx-auto mb-4 rounded-md">
 
                             {{-- アップロード --}}
                             <div class="flex flex-col items-start space-y-4 ml-6">
@@ -25,7 +25,7 @@
                                     for="file_input">表紙を変更する場合は画像を選んでください</label>
                                 <input
                                     class="block w-full text-sm file:p-2 file:font-semibold file:cursor-pointer text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                    id="file_input" type="file">
+                                    id="file_input" type="file" name="image_path">
                             </div>
 
                         </div>
@@ -34,7 +34,7 @@
                             <div class="form-group mt-5 mb-3">
                                 <label for="title gray_shadow">タイトル</label>
                                 <input type="text" class="form-control " id="title" name="title"
-                                    placeholder="本のタイトル" value="{{ old('title')}}">
+                                    placeholder="本のタイトル" value="{{ old('title') }}">
                             </div>
                             @if ($errors->has('title'))
                                 <li class="list-none text-red-600">{{ $errors->first('title') }}</li>
@@ -43,7 +43,8 @@
                             {{-- 種別 --}}
                             <div class="form-group mt-6">
                                 <label for="type gray_shadow">種別</label>
-                                <input type="text" class="form-control" id="種別" name="type" placeholder="種別" value="{{ old('type')}}">
+                                <input type="text" class="form-control" id="種別" name="type" placeholder="種別"
+                                    value="{{ old('type') }}">
                             </div>
                             @if ($errors->has('type'))
                                 <li class="list-none text-red-600">{{ $errors->first('type') }}</li>
@@ -68,18 +69,23 @@
 
 @section('js')
     <script>
+        //file_inputが変わったら、displayImageが変わるようにしたい
         document.addEventListener('DOMContentLoaded', function() {
-            const fileUpload = document.getElementById('fileUpload');
+            const fileInput = document.getElementById('file_input');
             const displayImage = document.getElementById('displayImage');
 
-            fileUpload.addEventListener('change', () => {
-                const file = fileUpload.files[0];
+            fileInput.addEventListener('change', () => {
+                const file = fileInput.files[0];
                 if (file) {
                     const reader = new FileReader();
+
+                    // onloadを先に定義すると、onloadがreadAsDataURLを見逃す可能性がなくなる
+                    // データURLをsrcに挿入
                     reader.onload = function(e) {
-                        displayImage.src = e.target.result; // 画像のURLを設定
+                        displayImage.src = e.target.result; 
                     };
-                    reader.readAsDataURL(file); // ファイルをデータURLとして読み込む
+                    // ファイルをデータURLとして読み込む
+                    reader.readAsDataURL(file); 
                 }
             });
         })

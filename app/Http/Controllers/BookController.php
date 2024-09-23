@@ -47,15 +47,25 @@ class BookController extends Controller
 
         $validated = $validator->validated();
 
-        if ($request->hasFile('image_path')) {
-            $file = $request->file('image_path');
-            $imageName = $file->hashName();
-            $file->storeAs('public/img', $imageName);
-            $validated['image_path'] = 'storage/img/' . $imageName;
-        } else {
-            $validated['image_path'] = 'storage/img/bookimage.jpg';
-        }
 
+        // dd($request);
+        // if ($request->hasFile('image_path')) {
+        //     $file = $request->file('image_path');
+        //     $imageName = $file->hashName();
+        //     $file->storeAs('public/img', $imageName);
+        //     $validated['image_path'] = 'storage/img/' . $imageName;
+        // } else {
+        //     $validated['image_path'] = 'img/bookimage.jpg';
+        // }
+        if (!$request->hasFile('image_path')) {
+            $validated['image_path'] = 'img/bookimage.jpg';
+        } else if ($request->hasFile('image_path')) {
+            $file = $request->file('image_path');
+            // 画像が重複しないようにハッシュ化
+            $validated['image_path'] = $file->hashName();
+            // S3にファイルをアップロード
+            Storage::disk('s3')->put('covers/' . $validated['image_path'], $file);
+        }
 
 
         Book::create([
