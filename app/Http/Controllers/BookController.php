@@ -66,7 +66,6 @@ class BookController extends Controller
         }
 
 
-
         Book::create([
             'user_id' => Auth::id(),
             'title' => $validated['title'],
