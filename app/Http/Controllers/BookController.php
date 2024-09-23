@@ -66,7 +66,8 @@ class BookController extends Controller
             $validated['image_path'] = $file->hashName();
 
             // S3にファイルオブジェクトを直接アップロード
-            Storage::disk('s3')->put('covers/' . $validated['image_path'], $file);
+            $result = Storage::disk('s3')->put('covers/' . $validated['image_path'], $file);
+            dd($result);
         }
 
 
