@@ -60,13 +60,13 @@ class BookController extends Controller
         if (!$request->hasFile('image_path')) {
             $validated['image_path'] = 'img/bookimage.jpg';
         } else if ($request->hasFile('image_path')) {
-            // dd(config('filesystems.disks.s3.region'));
             $file = $request->file('image_path');
-            // 画像が被ってしまわないようにハッシュかをする
+
+            // ハッシュ化されたファイル名を取得
             $validated['image_path'] = $file->hashName();
 
-            dd(file_get_contents($file));
-            Storage::disk('s3')->put('covers/' . $validated['image_path'], file_get_contents($file));
+            // S3にファイルオブジェクトを直接アップロード
+            Storage::disk('s3')->put('covers/' . $validated['image_path'], $file);
         }
 
 
