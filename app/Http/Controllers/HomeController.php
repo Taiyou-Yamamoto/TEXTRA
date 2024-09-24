@@ -50,6 +50,6 @@ class HomeController extends Controller
         $randomComment = $comments[array_rand($comments)];
         $books = Auth::user()->books->sortByDesc('created_at');
         
-        return view('home', compact('books', 'randomComment','imageUrls'));
+        return view('home', compact('books', 'randomComment');
     }
 }
