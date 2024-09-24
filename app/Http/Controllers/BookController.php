@@ -102,7 +102,7 @@ class BookController extends Controller
                 Storage::disk('s3')->deleteDirectory($wannaDeleteDirectly);
             }
 
-
+            $book->delete();
         }
 
         return redirect()->route('home');
