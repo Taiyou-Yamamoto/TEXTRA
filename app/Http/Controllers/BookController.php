@@ -25,7 +25,6 @@ class BookController extends Controller
     // 書籍登録
     public function add(Request $request)
     {
-
         $rules = [
             'title' => 'required|string|max:100',
             'type' => 'required|string|max:20',
@@ -57,14 +56,14 @@ class BookController extends Controller
         // } else {
         //     $validated['image_path'] = 'img/bookimage.jpg';
         // }
+        // ユーザー専用ののS3ファイルを作るためにIDを取得
+        $id =  Auth::id();
         if (!$request->hasFile('image_path')) {
             $validated['image_path'] = 'img/bookimage.jpg';
         } else if ($request->hasFile('image_path')) {
             $file = $request->file('image_path');
-            // 画像が重複しないようにハッシュ化
-            // $validated['image_path'] = $file->hashName();
             // S3にファイルをアップロード
-            Storage::disk('s3')->put('/', $file);
+            Storage::disk('s3')->put($id, $file);
         }
 
 
