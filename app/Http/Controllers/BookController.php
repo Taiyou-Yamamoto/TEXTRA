@@ -64,10 +64,10 @@ class BookController extends Controller
             $file = $request->file('image_path');
             $hashed = $file->hashName();
 
-            // DBとS3で同一のキーを作りたい
+            // DBとS3で同一のキーを作りたい。hashNameは名前を変更するだけで、ファイルを取得できないので$hashedでキーになるフォルダを作っている
             $filePath = "user_{$id}/" . $hashed;
             // original-book-cover-images/$hashed.file/$hashed.jpgの形にする
-            $validated['image_path'] = $filePath .'/' . $hashed;
+            $validated['image_path'] = $filePath . '/' . $hashed;
             // S3にファイルをアップロード
             Storage::disk('s3')->put($filePath, $file);
         }
@@ -95,12 +95,15 @@ class BookController extends Controller
         $book = Book::find($id);
 
         if ($book) {
-            if ($book->image_path !== 'storage/img/bookimage.jpg') {
-                $imagePath = str_replace('storage/', '', $book->image_path);
+            if ($book->image_path !== 'img/bookimage.jpg') {
+                // strrposのoffsetを1して、右から検索
+                $searchSlash = strrpos($book->image_path, '/', -1);
+                $wannaDeleteDirectly = substr($book->image_path, 0, $searchSlash);
+                dd($wannaDeleteDirectly);
                 Storage::disk('public')->delete($imagePath);
             }
 
-            $book->delete();
+            // $book->delete();
         }
 
         return redirect()->route('home');
