@@ -55,7 +55,7 @@ class HomeController extends Controller
         $imageUrls = array_map(function ($path) {
             return Storage::disk('s3')->url($path);
         }, $paths);
-        dd($imageUrls);
-        return view('home', compact('books', 'randomComment'));
+        // dd($imageUrls);
+        return view('home', compact('books', 'randomComment','imageUrls'));
     }
 }
