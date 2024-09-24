@@ -63,6 +63,8 @@ class BookController extends Controller
         } else if ($request->hasFile('image_path')) {
             $file = $request->file('image_path');
             $hashed = $file->hashName();
+
+            // DBとS3で同一のキーを作りたい
             $filePath = "user_{$id}/" . $hashed;
             $validated['image_path'] = $filePath;
             // S3にファイルをアップロード
