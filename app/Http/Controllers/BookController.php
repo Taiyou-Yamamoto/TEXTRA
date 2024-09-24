@@ -64,7 +64,7 @@ class BookController extends Controller
             // 画像が重複しないようにハッシュ化
             // $validated['image_path'] = $file->hashName();
             // S3にファイルをアップロード
-            Storage::disk('s3')->put('/' . $validated['image_path'], $file);
+            Storage::disk('s3')->put('/', $file);
         }
 
 
