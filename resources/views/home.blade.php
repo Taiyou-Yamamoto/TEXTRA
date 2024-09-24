@@ -19,8 +19,8 @@
     <div
         class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-6 w-full h-[7rem] 2xl:h-[43rem] xl:h-[38rem] lg:h-80 mmd:h-[40rem] sm:h-[15rem]">
         <!-- 本を追加するボタン -->
-        <div class="flex items-center justify-center aspect-3/5">
-            <a href="{{ route('book.register') }}" class="flex flex-col items-center justify-center h-full w-full ">
+        <div class="flex justify-center items-start">
+            <a href="{{ route('book.register') }}" class="h-full w-full flex flex-col items-start">
                 <div
                     class="flex flex-col items-center justify-center h-full w-full rounded-md border-4 border-dashed hover:bg-blue-300 border-blue-600 hover:border-indigo-600 quickAnimation hover:bg-blue-30">
                     <i class="fas fa-plus text-4xl text-blue-600 hover:text-indigo-600 animation"></i>
@@ -34,14 +34,14 @@
 
         <!-- 本のカード -->
         @foreach ($books as $book)
-            <div class="relative flex items-center justify-center aspect-lon aspect-3/5">
+            <div class="relative flex items-center justify-center">
                 <a href="{{ route('note.register', $book->id) }}" method="GET"
                     id="{{ $book->id }}"class="flex flex-col items-center justify-center h-full w-full"
                     oncontextmenu="openDialog()">
                     <div
-                        class="aspect-3/5 rounded-xl w-full hover:border-4 hover:border-blue-500 hover:text-blue-600 img_shadow hover:shadow-2xl active:shadow-none quickAnimation">
+                        class=" rounded-xl w-full hover:border-4 hover:border-blue-500 hover:text-blue-600 img_shadow hover:shadow-2xl active:shadow-none quickAnimation">
 
-                        {{-- s3からファイルを読み込む処理はBladeに直接書き込むことで実現 ( 本来はcontrollerに分離する方が効率がいいが、断念 ) --}}
+                        {{-- s3からファイルを読み込む処理はBladeに直接書き込むことで実現 ( 本来はcontrollerに分離する方が効率がいいが断念 ) --}}
                         <img src="{{ $book->image_path == 'img/bookimage.jpg' ? asset('img/bookimage.jpg') : Storage::disk('s3')->url($book->image_path) }}"
                             alt="img" class="h-full w-full object-cover rounded-lg">
                     </div>

@@ -8,7 +8,7 @@
 @section('content')
     <div class="swiper w-full mx-auto mt-12">
         <div class="swiper-wrapper flex items-center">
-            @forelse ($notes as $note)
+            @foreach ($notes as $note)
                 <!-- Slides -->
                 <div class="swiper-slide slide-content w-full leading-normal rounded-md border gray_shadow shadow-md">
                     <div class="flex-col">
@@ -20,11 +20,7 @@
                         </div>
                     </div>
                 </div>
-            @empty
-                <div class="swiper-slide items-center justify-center">
-                    めもがありません
-                </div>
-            @endforelse
+            @endforeach
         </div>
 
         <!-- Pagination -->
