@@ -50,9 +50,9 @@ class HomeController extends Controller
         $randomComment = $comments[array_rand($comments)];
 
         $books = Auth::user()->books->sortByDesc('created_at');
-        $book['img'] = Storage::disk('s3')->files('covers');
-
-        // dd($books['img']);
+        $id =  Auth::id();
+        $book['image_path'] = Storage::disk('s3')->allFiles('user_' . $id);
+        dd($books['image_path']);
         return view('home', compact('books', 'randomComment'));
     }
 }
