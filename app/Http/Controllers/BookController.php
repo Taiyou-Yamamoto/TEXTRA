@@ -60,7 +60,7 @@ class BookController extends Controller
         if (!$request->hasFile('image_path')) {
             $validated['image_path'] = 'img/bookimage.jpg';
         } else if ($request->hasFile('image_path')) {
-            $file = $request->file('image_path')->hashName();
+            $file = $request->file('image_path');
             // 画像が重複しないようにハッシュ化
             // $validated['image_path'] = $file->hashName();
             // S3にファイルをアップロード
