@@ -39,7 +39,9 @@
                     oncontextmenu="openDialog()">
                     <div
                         class="aspect-3/5 rounded-xl w-full hover:border-4 hover:border-blue-500 hover:text-blue-600 img_shadow hover:shadow-2xl active:shadow-none quickAnimation">
-                        <img src="{{ asset($book->image_path) }}" alt="img"
+
+                        {{-- s3からファイルを読み込む処理はBladeに直接書き込むことで実現 ( 本来はcontrollerに分離する方が効率がいいが、断念 ) --}}
+                        <img src="{{ $book->image_path == 'img/bookimage.jpg' ? asset("img/bookimage.jpg") : asset($book->image_path) }}" alt="img"
                             class="h-full w-full object-cover rounded-lg">
                     </div>
                     <p
