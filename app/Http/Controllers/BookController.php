@@ -99,11 +99,10 @@ class BookController extends Controller
                 // strrposのoffsetを1して、右から検索
                 $searchSlash = strrpos($book->image_path, '/', -1);
                 $wannaDeleteDirectly = substr($book->image_path, 0, $searchSlash);
-                dd($wannaDeleteDirectly);
-                Storage::disk('public')->delete($imagePath);
+                Storage::disk('s3')->deleteDirectory($wannaDeleteDirectly);
             }
 
-            // $book->delete();
+
         }
 
         return redirect()->route('home');
