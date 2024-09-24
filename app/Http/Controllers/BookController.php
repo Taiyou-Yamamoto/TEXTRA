@@ -67,9 +67,9 @@ class BookController extends Controller
             // DBとS3で同一のキーを作りたい
             $filePath = "user_{$id}/" . $hashed;
             // original-book-cover-images/$hashed.file/$hashed.jpgの形にする
-            $validated['image_path'] = $filePath/$hashed;
+            $validated['image_path'] = $filePath + '/' + $hashed;
             // S3にファイルをアップロード
-            Storage::disk('s3')->put($filePath , $file);
+            Storage::disk('s3')->put($filePath, $file);
         }
 
 
