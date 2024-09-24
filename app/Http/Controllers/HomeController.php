@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -49,6 +50,8 @@ class HomeController extends Controller
         $randomComment = $comments[array_rand($comments)];
 
         $books = Auth::user()->books->sortByDesc('created_at');
+        $books['img'] = Storage::disk('s3')->files('covers');
+        dd($books['img']);
         return view('home', compact('books', 'randomComment'));
     }
 }
