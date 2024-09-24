@@ -8,6 +8,7 @@
         class="mx-auto h-32 bg-gradient-to-r from-teal-300 to-blue-300 rounded-xl mt-3 flex flex-col justify-center shadow-md">
         <div class="bg-white">
             <div class="flex items-center px-2 pt-2  m-1">
+                {{--  --}}
                 <h1 class="text-3xl font-bold ml-4">Tips</h1>
                 <i class="fas fa-lightbulb text-lg" style="color: #FFD43B;"></i>
             </div>
