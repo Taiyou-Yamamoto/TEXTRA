@@ -63,7 +63,7 @@ class BookController extends Controller
         } else if ($request->hasFile('image_path')) {
             $file = $request->file('image_path');
             // S3にファイルをアップロード
-            Storage::disk('s3')->put($id, $file);
+            Storage::disk('s3')->put("user_{$id}", $file);
         }
 
 
