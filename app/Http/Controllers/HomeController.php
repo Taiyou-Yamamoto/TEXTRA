@@ -48,16 +48,8 @@ class HomeController extends Controller
         ];
 
         $randomComment = $comments[array_rand($comments)];
-
         $books = Auth::user()->books->sortByDesc('created_at');
-        $id =  Auth::id();
-        $paths = Storage::disk('s3')->allFiles('user_' . $id);
-
-        // s3からファイルを読み込む処理はBladeに直接書き込むことで実現
-        $imageUrls = array_map(function ($path) {
-            return Storage::disk('s3')->url($path);
-        }, $paths);
-        // dd($imageUrls);
+        
         return view('home', compact('books', 'randomComment','imageUrls'));
     }
 }
