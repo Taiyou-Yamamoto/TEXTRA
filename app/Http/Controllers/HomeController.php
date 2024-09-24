@@ -51,8 +51,11 @@ class HomeController extends Controller
 
         $books = Auth::user()->books->sortByDesc('created_at');
         $id =  Auth::id();
-        $books['image_path'] = Storage::disk('s3')->allFiles('user_' . $id);
-        dd($books['image_path']);
+        $paths = Storage::disk('s3')->allFiles('user_' . $id);
+        $imageUrls = array_map(function ($path) {
+            return Storage::disk('s3')->url($path);
+        }, $paths);
+        dd($imageUrls);
         return view('home', compact('books', 'randomComment'));
     }
 }
