@@ -2,19 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .text-shadow {
-    @apply text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-} */
-
-/* html{
-    font-family: 'Nerko One', 'Noto Sans JP', sans-serif;
-} */
-
-
-/* body:not(.layout-fixed) .main-sidebar {
-    position: fixed;
-} */
-
 .brand-link {
     text-align: center;
     font-weight: bold;
@@ -87,3 +74,12 @@
 
     grid-template-columns: 2fr 0.8fr;
 }
+
+.main-sidebar {
+    position: fixed !important;
+}
+
+/* .icon {
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+} */

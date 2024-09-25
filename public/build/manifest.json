@@ -1,16 +1,16 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-37ce4b44.css",
+    "file": "assets/app-1e8306c9.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
   "resources/css/home.css": {
-    "file": "assets/home-62758e03.css",
+    "file": "assets/home-a5ffdd96.css",
     "isEntry": true,
     "src": "resources/css/home.css"
   },
   "resources/css/slider.css": {
-    "file": "assets/slider-2c738097.css",
+    "file": "assets/slider-11dfab67.css",
     "isEntry": true,
     "src": "resources/css/slider.css"
   },
@@ -22,7 +22,7 @@
     "css": [
       "assets/app-4e82bf07.css"
     ],
-    "file": "assets/app-34ed1d5f.js",
+    "file": "assets/app-f3931110.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const typed = new Typed('#typed', {
-        strings: ['こんにちは','ここは言葉の保管庫','TEXTRA'],
+        strings: ['こんにちは','あなたの学びをサポートします','TEXTRA'],
         typeSpeed: 80,
         startDelay: 1000,
         fadeOutDelay: 500,

@@ -62,12 +62,9 @@ class NoteController extends Controller
             'page_number' => $validated['page_number'] ?? null,
         ]);
 
+        // dd(session()->all());
 
-        session()->flash('message', '登録しました！');
-
-        return redirect()->route('note.register', ['id' => $id])
-            ->withInput()
-            ->with('message', '登録しました！');
+        return redirect()->route('note.register', ['id' => $id]);
     }
 
 
@@ -191,7 +188,7 @@ class NoteController extends Controller
         $note = Note::with('book')->where('id', $id)->first();
 
         // Noteの内容を更新
-        $note->page_number = $validated['page_number'];
+        $note->page_number = $validated['page_number'] ?? null;
         $note->content = $validated['content'];
         $note->save(); // Noteを保存
 

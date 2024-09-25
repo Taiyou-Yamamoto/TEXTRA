@@ -18,6 +18,10 @@
     animation: fadeOut 1.5s ease-in-out;
 }
 
+.main-sidebar {
+    position: fixed !important;
+}
+
 @keyframes fadeOut {
     from {
         opacity: 1;

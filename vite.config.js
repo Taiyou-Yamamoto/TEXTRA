@@ -6,18 +6,13 @@ export default defineConfig({
         manifest: true,
         outDir: 'public/build',
     },
-    server: {
-        https: true,
-    },
     plugins: [
         laravel({
             input: [
-                // 'resources/sass/app.scss',
-                'resources/css/slider.css', 
-                'resources/css/app.css',
                 'resources/js/app.js',
+                'resources/css/app.css',
                 'resources/css/home.css',
-
+                'resources/css/slider.css', 
             ],
             refresh: true,
         }),
