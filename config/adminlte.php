@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Textora',
+    'title' => 'TEXTRA',
     'title_prefix' => '',
     'title_postfix' => '',
 
