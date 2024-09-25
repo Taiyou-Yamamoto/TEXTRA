@@ -76,6 +76,7 @@ class NoteController extends Controller
             'type' => 'required|string|max:20',
             'image_path' => 'nullable|image',
             'content' => 'required|string|max:500',
+            'page_number' => 'nullable|integer|min:1|max:1000'
         ];
 
         $messages = [
@@ -97,7 +98,7 @@ class NoteController extends Controller
 
         $note = Note::with('book')->where('id', $id)->first();
 
-        // dd($note);
+        // dd($validated['page_number']);
         // Noteの内容を更新
         $note->page_number = $validated['page_number'] ?? $note->page_number;
         $note->content = $validated['content'];
@@ -166,6 +167,7 @@ class NoteController extends Controller
             'type' => 'required|string|max:20',
             'image_path' => 'nullable|image',
             'content' => 'required|string|max:500',
+            'page_number' => 'nullable|integer|min:1|max:1000'
         ];
 
         $messages = [
