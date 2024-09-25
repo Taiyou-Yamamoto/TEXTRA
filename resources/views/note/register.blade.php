@@ -129,7 +129,8 @@
                 </div>
 
                 {{-- 入力フォーム --}}
-                <form id="editForm" action="" method="POST">　{{-- actionはjsで渡す --}}
+                {{-- actionはjsで渡すためからにしておく --}}
+                <form id="editForm" action="" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="modal-body h-96 mb-3">

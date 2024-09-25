@@ -13,7 +13,6 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/css/home.css',
                 'resources/css/slider.css', 
-
             ],
             refresh: true,
         }),
