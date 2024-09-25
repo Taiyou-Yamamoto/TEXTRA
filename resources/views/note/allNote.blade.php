@@ -21,7 +21,7 @@
                 <input class="h-full w-3/12 px-4 py-2 border border-gray-300 rounded-l-md active:border-none" type="text"
                     name="keywords" id="keywords" placeholder="キーワードで検索" value="{{ request()->query('keywords') }}" />
                 <select id="search" name='type'
-                    class="h-full xl:px-4 py-2 border border-gray-300 text-gray-500 active:border-none">
+                    class="h-full xl:px-7 py-2 border border-gray-300 text-gray-500 active:border-none">
                     <option value="all" @if (request()->query('type') == 'all') selected @endif>全種別</option>
                     @forelse ($types as $type)
                         <option value="{{ $type }}" @if (request()->query('type') == $type) selected @endif>
@@ -67,7 +67,7 @@
 
                         {{-- 編集ボタン --}}
                         <td class="text-white cursor-pointer"><button id="{{ $loop->index }}" type="button"
-                                class="btn gray_shadow text-white text-lg font-semibold shadow-md hover:shadow-none py-1 px-4 bg-green-500 hover:bg-green-600 rounded-md animation"
+                                class="btn shadow-md gray_shadow text-white font-semibold lg:text-lg sm:text-sm py-1 lg:!px-4 !px-1 hover:shadow-none bg-green-500 hover:bg-green-600 rounded-md animation"
                                 data-toggle="modal" data-target="#exampleModal" data_id="{{ $note->id }}"
                                 data_title="{{ $note->book->title }}" data_type="{{ $note->book->type }}"
                                 data_page_number="{{ $note->page_number }}" data_content="{{ $note->content }}"
@@ -82,7 +82,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
-                                    class="py-1 px-4 shadow-md hover:shadow-none gray_shadow bg-rose-400 hover:bg-rose-600 font-semibold text-lg cursor-pointer rounded-md animation"><i
+                                    class="font-semibold lg:text-lg sm:text-sm py-1 lg:!px-4 !px-1 shadow-md hover:shadow-none gray_shadow bg-rose-400 hover:bg-rose-600 cursor-pointer rounded-md animation"><i
                                         class="fas fa-trash gray_shadow"></i> 削除</button>
                             </form>
                         </td>

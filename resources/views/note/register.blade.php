@@ -84,12 +84,12 @@
 
                         {{-- 編集ボタン --}}
                         <td class="text-white cursor-pointer"><button id="{{ $loop->index }}" type="button"
-                                class="btn gray_shadow text-white text-lg font-semibold shadow-md hover:shadow-none py-1 px-4 bg-green-500 hover:bg-green-600 rounded-md animation"
+                                class="btn gray_shadow text-white font-semibold lg:text-lg sm:text-sm py-1 lg:!px-4 !px-1 shadow-md hover:shadow-none bg-green-500 hover:bg-green-600 rounded-md animation"
                                 data-toggle="modal" data-target="#exampleModal" data_id="{{ $note->id }}"
                                 data_title="{{ $note->book->title }}" data_type="{{ $note->book->type }}"
                                 data_page_number="{{ $note->page_number }}" data_book_id="{{ $note->book_id }}"
-                                data_content="{{ $note->content }}" onclick="openEditModal(this)"><i
-                                    class="fas fa-pencil-alt gray_shadow"></i>
+                                data_content="{{ $note->content }}" onclick="openEditModal(this)">
+                                <i class="fas fa-pencil-alt gray_shadow"></i>
                                 編集
                             </button>
 
@@ -100,7 +100,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
-                                    class="py-1 px-4 shadow-md hover:shadow-none gray_shadow bg-rose-400 hover:bg-rose-600 font-semibold text-lg cursor-pointer rounded-md animation"><i
+                                    class="font-semibold lg:text-lg sm:text-sm py-1 lg:!px-4 !px-1 shadow-md hover:shadow-none gray_shadow bg-rose-400 hover:bg-rose-600 cursor-pointer rounded-md animation"><i
                                         class="fas fa-trash gray_shadow"></i> 削除</button>
                             </form>
                         </td>
