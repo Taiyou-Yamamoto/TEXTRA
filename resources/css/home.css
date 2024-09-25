@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 .brand-link {
-    text-align: center;
+    text-align: center ;
+    font-weight: bold;
+}
+
+.brand-title {
+    text-align: center!important;
     font-weight: bold;
 }
 .content-wrapper {
