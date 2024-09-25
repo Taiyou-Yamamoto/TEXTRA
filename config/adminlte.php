@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Textora</b>',
+    'logo' => '<b>TEXTORA</b>',
     'logo_img' => '',
     'logo_img_class' => '',
     'logo_img_xl' => null,
