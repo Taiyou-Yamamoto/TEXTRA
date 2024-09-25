@@ -1,4 +1,3 @@
-
 @extends('adminlte::page')
 
 @section('title', 'Home')
@@ -43,6 +42,5 @@
 @stop
 
 @section('js')
-    <script></script>
+    @vite(['resources/js/app.js'])
 @stop
-
