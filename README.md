@@ -1,44 +1,42 @@
-## 商品管理システム
+# TEXTRA   　- 書籍用メモ登録アプリ-
+___
+## 概要
 
-### 環境構築手順
+『TEXTRA』は、読書中に重要なポイントやインスピレーションを手軽にメモとして残せる書籍用メモ登録アプリです。メモはスライド形式で簡単に振り返ることができ、効率的に読書の内容を整理・管理します。また、検索機能で必要な情報を素早く検索できることが特徴です。さらに、複数デバイス間での同期が可能で、いつでもどこでもメモにアクセス可能です。
 
-* Gitクローン
-* .env.example をコピーして .env を作成
-* MySQLのデータベース作成（名前：item_management）
-* Macの場合 .env の DB_PASSWORD を root に修正（Windowsは修正不要）
+## 特徴
+- ログイン・ログアウト機能
+- 書籍ごとにメモを登録・編集
+- キーワード検索や種別によって、目的のメモへ瞬時にアクセス可能
+- 登録したメモをスライド表示で見返し可能
+- 直感的で機能的なデザイン
 
-    ```INI
-    DB_PASSWORD=root
-    ```
+　　
 
-* APP_KEY生成
 
-    ```console
-    php artisan key:generate
-    ```
+## 開発環境
+- フロントエンド　/　バックエンド 
+  - PHP 8.2.23 
+  - Laravel 10.48.20  
+- スタイリング
+  - Tailwind 3.4.10
+- データベース
+  - MySQL 8.0.39  
+- 画像ストレージ
+  - AWS s3
+- デプロイ
+  - heroku
+- ローカル開発環境
+  - MAMP
 
-* Composerインストール
 
-    ```console
-    composer install
-    ```
 
-* フロント環境構築
+## 設計書
+[設計書を閲覧する](https://drive.google.com/drive/folders/18xptBuoLWaBpsJks32DUXON76hxPXtxX?usp=sharing)
 
-    ```console
-    npm ci
-    npm run build
-    ```
+## ご利用
+[アプリケーションに移動](https://book-memo-application-e17d5ea20201.herokuapp.com)
 
-* マイグレーション
-
-    ```console
-    php artisan migrate
-    ```
-
-* 起動
-
-    ```console
-    php artisan serve
-    ```
-# book_and_memo
+## テストアカウント情報
+メールアドレス original@gmail.com  
+パスワード test1@gmail.com
