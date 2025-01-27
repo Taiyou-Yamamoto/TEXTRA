@@ -30,10 +30,6 @@ ___
   - MAMP
 
 
-
-## 設計書
-[設計書を閲覧する](https://drive.google.com/drive/folders/18xptBuoLWaBpsJks32DUXON76hxPXtxX?usp=sharing)
-
 ## ご利用
 [アプリケーションに移動](https://book-memo-application-e17d5ea20201.herokuapp.com)
 
