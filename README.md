@@ -11,7 +11,10 @@ ___
 - 登録したメモをスライド表示で見返し可能
 - 直感的で機能的なデザイン
 
-　　
+## ER図
+
+![E-R](https://github.com/user-attachments/assets/31c8ca7c-d2e4-4588-89cb-485e6d359d42)
+
 
 
 ## 開発環境
