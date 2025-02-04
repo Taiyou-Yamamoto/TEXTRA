@@ -79,6 +79,3 @@ ___
 ## ご利用
 [アプリケーションに移動](https://book-memo-application-e17d5ea20201.herokuapp.com)
 
-## テストアカウント情報
-メールアドレス original@gmail.com  
-パスワード test1@gmail.com
